@@ -7,10 +7,10 @@
     - etc/zsh/zshrc
     - etc/zsh/zprofile
     - etc/zsh/antigen.zsh
-    - etc/command-not-found.zsh
-    - etc/myprompt.zsh
-    - etc/dirstack.zsh
-    - etc/undistract-me.zsh
+    - etc/zsh/command-not-found.zsh
+    - etc/zsh/myprompt.zsh
+    - etc/zsh/dirstack.zsh
+    - etc/zsh/undistract-me.zsh
 
 - name: Set shell to zsh
   command: usermod --shell /bin/zsh {{ username }}
