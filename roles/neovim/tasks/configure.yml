@@ -1,0 +1,41 @@
+- name: Install vimrc
+  copy:
+    src: etc/vimrc
+    dest: /etc/
+  become: yes
+
+- name: Link vimrc to neovim sysinit.vim
+  file:
+    src: /etc/vimrc
+    dest: /etc/xdg/nvim/sysinit.vim
+    state: link
+    force: yes
+  become: yes
+
+- name: Create dir /etc/vim
+  file:
+    path: /etc/vim/
+    state: directory
+  become: yes
+
+- name: Create vim autoload dir
+  file:
+    dest: /etc/vim/autoload/
+    state: directory
+  become: yes
+
+- name: Install plug.vim
+  copy:
+    src: etc/vim/autoload/plug.vim
+    dest: /etc/vim/autoload/plug.vim
+    force: no
+  become: yes
+
+    #- name: Install neovim plugins for root
+    #  command: nvim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qa --headless
+    #  become: yes
+    #
+    #- name: Install neovim plugins for {{ username }}
+    #  command: nvim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qa --headless
+    #  become: yes
+    #  become_user: "{{ username }}"

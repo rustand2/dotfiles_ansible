@@ -1,0 +1,11 @@
+- name: Install tmux.conf
+  copy:
+    src: etc/tmux.conf
+    dest: /etc/
+  become: yes
+
+- name: Preserve TMUX variable for sudo
+  copy:
+    src: etc/sudoers.d/tmux
+    dest: /etc/sudoers.d/tmux
+  become: yes

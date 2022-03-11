@@ -1,0 +1,13 @@
+- name: Install graphical environment
+  package:
+    name:
+      - xorg-server
+      - xorg-xinit
+      - xorg-xev
+      - xorg-xrandr
+      - i3-wm
+      - i3blocks
+      - rofi
+      - rxvt-unicode
+    state: present
+  become: yes

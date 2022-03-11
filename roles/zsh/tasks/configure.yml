@@ -1,0 +1,44 @@
+- name: Install zsh config
+  copy:
+    src: "{{ item }}"
+    dest: /etc/zsh/
+  become: yes
+  loop:
+    - etc/zsh/zshrc
+    - etc/zsh/zprofile
+    - etc/zsh/antigen.zsh
+    - etc/command-not-found.zsh
+    - etc/myprompt.zsh
+    - etc/dirstack.zsh
+    - etc/undistract-me.zsh
+
+- name: Set shell to zsh
+  command: usermod --shell /bin/zsh {{ username }}
+  become: yes
+  changed_when: false
+
+- name: Touch .zshrc
+  file:
+    path: /home/{{ username }}/.zshrc
+    state: touch
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Create zsh dircache
+  file:
+    path: /home/{{ username }}/.cache/zsh/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Touch .zshrc
+  file:
+    path: /root/.zshrc
+    state: touch
+  become: yes
+
+- name: Create zsh dircache
+  file:
+    path: /root/.cache/zsh/
+    state: directory
+  become: yes

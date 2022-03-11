@@ -1,0 +1,7 @@
+- name: Install neovim
+  package:
+    name:
+      - neovim
+      - python-pynvim
+    state: present
+  become: yes

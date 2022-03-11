@@ -1,0 +1,7 @@
+- name: Install zsh
+  package:
+    name:
+      - zsh
+      - grc
+    state: present
+  become: yes
