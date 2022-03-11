@@ -1,0 +1,6 @@
+- name: Install qutebrowser
+  package:
+    name:
+      - qutebrowser
+    state: present
+  become: yes

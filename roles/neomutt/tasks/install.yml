@@ -1,0 +1,7 @@
+- name: Install neomutt
+  package:
+    name:
+      - neomutt
+      - offlineimap
+    state: present
+  become: yes

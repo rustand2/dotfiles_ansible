@@ -1,0 +1,15 @@
+---
+- name: work
+  hosts: all
+  vars_files:
+    - vars.yml
+  roles:
+    - common
+    - zsh
+    - neovim
+    - neomutt
+    - tmux
+    - i3
+    - qutebrowser
+    - wifi
+    - virtualization

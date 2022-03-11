@@ -1,0 +1,46 @@
+- name: Refresh package list
+  community.general.pacman:
+    update_cache: yes
+  become: yes
+
+- name: Upgrade system
+  community.general.pacman:
+    upgrade: yes
+  become: yes
+
+- name: Install base-devel
+  package:
+    name:
+      - base
+      - base-devel
+    state: present
+  become: yes
+
+- name: Install developer tools
+  package:
+    name:
+      - git
+      - htop
+      - openssh
+      - python
+      - ipython
+      - tree
+      - ncdu
+      - fzf
+      - unzip
+      - cmake
+      - pciutils
+      - usbutils
+      - man
+    state: present
+  become: yes
+
+- name: Install GUI programs
+  package:
+    name:
+      - pavucontrol
+      - okular
+      - feh
+      - mpv
+    state: present
+  become: yes
