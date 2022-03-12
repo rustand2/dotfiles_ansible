@@ -31,11 +31,11 @@
     force: no
   become: yes
 
-    #- name: Install neovim plugins for root
-    #  command: nvim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qa --headless
-    #  become: yes
-    #
-    #- name: Install neovim plugins for {{ username }}
-    #  command: nvim +PlugUpgrade +PlugClean +PlugInstall +PlugUpdate +qa --headless
-    #  become: yes
-    #  become_user: "{{ username }}"
+- name: Install neovim plugins for root
+  command: nvim +PlugUpgrade! +PlugClean! +PlugInstall! +PlugUpdate! +qa! --headless
+  become: yes
+
+- name: Install neovim plugins for {{ username }}
+  command: nvim +PlugUpgrade! +PlugClean! +PlugInstall! +PlugUpdate! +qa! --headless
+  become: yes
+  become_user: "{{ username }}"
