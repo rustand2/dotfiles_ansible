@@ -10,7 +10,13 @@
     dest: /etc/sudoers.d/tmux
   become: yes
 
+- name: Check if TPM is installed
+  stat:
+    path: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins
+  register: tpm
+
 - name: Install Tmux plugins
   command: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins
   become: yes
   become_user: "{{ username }}"
+  when: tpm.stat.exists
