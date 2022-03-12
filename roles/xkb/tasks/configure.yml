@@ -1,0 +1,12 @@
+- name: Install systemwide keymap settings
+  copy:
+    src: etc/X11/xorg.conf.d/00-keyboard.conf
+    dest: /etc/X11/xorg.conf.d/00-keyboard.conf
+  become: yes
+
+- name: Enable hyper key globally
+  copy:
+    src: usr/share/X11/xkb/symbols/pc
+    dest: /usr/share/X11/xkb/symbols/pc
+  become: yes
+
