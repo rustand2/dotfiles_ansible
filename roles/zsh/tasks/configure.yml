@@ -20,7 +20,7 @@
 - name: Touch .zshrc
   file:
     path: /home/{{ username }}/.zshrc
-    state: touch
+    state: file
   become: yes
   become_user: "{{ username }}"
 
@@ -34,7 +34,7 @@
 - name: Touch .zshrc
   file:
     path: /root/.zshrc
-    state: touch
+    state: file
   become: yes
 
 - name: Create zsh dircache
