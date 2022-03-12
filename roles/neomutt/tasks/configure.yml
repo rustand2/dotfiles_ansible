@@ -1,0 +1,13 @@
+- name: Configure mutt
+  template:
+    src: HOME/.mutt/muttrc.j2
+    dest: /home/{{ username }}/.mutt/
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Gmail authentication script for mutt
+  copy:
+    src: HOME/.mutt/oauth2.py
+    dest: /home/{{ username }}/.mutt/
+  become: yes
+  become_user: "{{ username }}"
