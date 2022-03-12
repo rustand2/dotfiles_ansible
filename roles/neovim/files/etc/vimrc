@@ -19,7 +19,7 @@ call plug#begin('~/.vim/plugged')
 
     " Tmux stuff
     Plug 'roxma/vim-tmux-clipboard'
-    Plug 'lrustand/vim-tmux-navigator'
+    Plug 'sunaku/tmux-navigate'
 
     " Completion stuff
     Plug 'xavierd/clang_complete'
