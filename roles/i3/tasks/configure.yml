@@ -14,14 +14,14 @@
 
 - name: Configure i3blocks bottom
   copy:
-    src: HOME/i3blocks_bottom.conf
+    src: HOME/.i3blocks_bottom.conf
     dest: /home/{{ username }}/.i3blocks_bottom.conf
   become: yes
   become_user: "{{ username }}"
 
 - name: Configure i3blocks top
   copy:
-    src: HOME/i3blocks_top.conf
+    src: HOME/.i3blocks_top.conf
     dest: /home/{{ username }}/.i3blocks_top.conf
   become: yes
   become_user: "{{ username }}"
