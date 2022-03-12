@@ -240,6 +240,9 @@ let g:airline_powerline_fonts = 1
 colorscheme base16-solarized-dark
 let g:airline_theme = 'base16'
 
+" Split settings
+set splitbelow
+set splitright
 
 " folding settings
 set foldmethod=indent   "fold based on indentation
