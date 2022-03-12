@@ -1,3 +1,10 @@
+- name: Create .mutt directory
+  file:
+    path: /home/{{ username }}/.mutt/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Configure mutt
   template:
     src: HOME/.mutt/muttrc.j2
