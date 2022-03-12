@@ -6,6 +6,7 @@
   roles:
     - common
     - zsh
+    - git
     - neovim
     - neomutt
     - tmux
