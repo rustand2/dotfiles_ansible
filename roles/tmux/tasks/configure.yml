@@ -9,3 +9,8 @@
     src: etc/sudoers.d/tmux
     dest: /etc/sudoers.d/tmux
   become: yes
+
+- name: Install Tmux plugins
+  commmand: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins
+  become: yes
+  become_user: "{{ username }}"
