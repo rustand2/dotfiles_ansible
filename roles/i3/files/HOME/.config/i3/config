@@ -10,7 +10,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $super Mod1
+set $super Mod4
 set $hyper Mod3
 set $terminal urxvt
 
