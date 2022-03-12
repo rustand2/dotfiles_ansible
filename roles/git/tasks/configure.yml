@@ -1,7 +1,7 @@
 - name: Install gitconfig
   template:
     src: HOME/.gitconfig.j2
-    dest: /home/{{ username }}/
+    dest: /home/{{ username }}/.gitconfig
   become: yes
   become_user: "{{ username }}"
 
