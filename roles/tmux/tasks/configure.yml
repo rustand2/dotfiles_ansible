@@ -11,6 +11,6 @@
   become: yes
 
 - name: Install Tmux plugins
-  commmand: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins
+  command: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins
   become: yes
   become_user: "{{ username }}"
