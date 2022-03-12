@@ -12,6 +12,12 @@
     force: yes
   become: yes
 
+- name: Set nvim as EDITOR and VISUAL
+  copy:
+    src: etc/profile.d/editor.sh
+    dest: /etc/profile.d/editor.sh
+  become: yes
+
 - name: Create dir /etc/vim
   file:
     path: /etc/vim/
