@@ -82,6 +82,8 @@ lua require'colorizer'.setup()
 " Set up python repl
 let g:slime_python_ipython = 1
 let g:slime_target = "neovim"
+
+" Set leader to space
 let mapleader =" "
 
 nnoremap <F5> :MundoToggle<CR>:call s:MundoPython('MundoRenderGraph()')<CR>
