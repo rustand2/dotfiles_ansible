@@ -66,7 +66,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'majutsushi/tagbar'
     Plug 'xolox/vim-misc'
     Plug 'kshenoy/vim-signature'
-    Plug 'etdev/vim-hexcolor'
+    Plug 'norcalli/nvim-colorizer.lua'
     Plug 'scrooloose/nerdcommenter'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'ntpeters/vim-better-whitespace'
@@ -76,6 +76,10 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
+set termguicolors
+lua require'colorizer'.setup()
+
+" Set up python repl
 let g:slime_python_ipython = 1
 let g:slime_target = "neovim"
 let mapleader =" "
@@ -261,11 +265,11 @@ augroup FastEscape
 augroup END
 
 " Highlight active pane background
-hi ActiveWindow ctermbg=8
-hi InactiveWindow ctermbg=NONE
+hi ActiveWindow ctermbg=8 guibg=#002b36
+hi InactiveWindow ctermbg=NONE guibg=NONE
 set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-autocmd FocusGained * hi ActiveWindow ctermbg=8
-autocmd FocusLost * hi ActiveWindow ctermbg=NONE
+autocmd FocusGained * hi ActiveWindow ctermbg=8 guibg=#002b36
+autocmd FocusLost * hi ActiveWindow ctermbg=NONE guibg=NONE
 
 " Restore tmux background color on exit
 if exists('$TMUX')
