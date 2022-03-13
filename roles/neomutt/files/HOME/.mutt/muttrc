@@ -1,18 +1,5 @@
 source gmail
 
-# Folder with emails
-set folder = "~/Maildir"
-# Type of mailbox
-set mbox_type = Maildir
-# Directory to poll for new mail
-set spoolfile = +INBOX
-# Directory to save sent messages into
-set record = +Sent
-# Sets the drafts folder
-set postponed = +Drafts
-# File that headers will be cached
-set header_cache = ~/.cache/mutt
-
 # Sort by threads
 set sort = threads
 # Sort threads by last date recieved - newest first
