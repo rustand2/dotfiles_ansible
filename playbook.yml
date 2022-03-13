@@ -3,6 +3,11 @@
   hosts: all
   vars_files:
     - vars.yml
+  module_defaults:
+    copy:
+      backup: yes
+    template:
+      backup: yes
   roles:
     - common
     - zsh
