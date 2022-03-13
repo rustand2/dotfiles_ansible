@@ -13,6 +13,6 @@ set trash = "+[Gmail]/Trash"
 
 
 set imap_authenticators="oauthbearer"
-set imap_oauth_refresh_command="~/.mutt/oauth2.py --quiet --user={{ email }} --client_id={{ client_id }} --client_secret={{ client_secret }} --refresh_token={{ refresh_token }}"
+set imap_oauth_refresh_command="~/.mutt/oauth2.py"
 set smtp_authenticators="oauthbearer"
-set smtp_oauth_refresh_command="~/.mutt/oauth2.py --quiet --user={{ email }} --client_id={{ client_id }} --client_secret={{ client_secret }} --refresh_token={{ refresh_token }}"
+set smtp_oauth_refresh_command="~/.mutt/oauth2.py"
