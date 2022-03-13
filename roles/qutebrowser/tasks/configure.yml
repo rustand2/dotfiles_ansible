@@ -1,0 +1,4 @@
+- name: Set qutebrowser as default web browser
+  command: xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
+  become: yes
+  become_user: "{{ username }}"
