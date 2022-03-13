@@ -1,0 +1,8 @@
+- name: Adjust time
+  command: ntpd -gq
+  become: yes
+
+- name: Update hardware clock
+  command: hwclock --systohc
+  become: yes
+

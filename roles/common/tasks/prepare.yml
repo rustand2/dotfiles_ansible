@@ -45,3 +45,9 @@
     dest: /etc/locale.conf
   become: yes
 
+- name: Set timezone
+  file:
+    src: /usr/share/zoneinfo/Europe/Oslo
+    dest: /etc/localtime
+    state: link
+  become: yes

@@ -13,6 +13,7 @@
     name:
       - base
       - base-devel
+      - ntp
     state: present
   become: yes
 
