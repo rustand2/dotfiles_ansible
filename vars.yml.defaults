@@ -2,6 +2,3 @@ username: <YOUR_USERNAME>
 password: "{{ '<YOUR_PASSWORD>' | password_hash('sha512') }}"
 fullname: "<YOUR_FULL_NAME>"
 email: <YOUR_EMAIL_ADDRESS>
-client_id: <YOUR_GMAIL_CLIENTID>
-client_secret: <YOUR_GMAIL_CLIENTSECRET>
-refresh_token: <YOUR_GMAIL_REFRESH_TOKEN>
