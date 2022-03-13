@@ -18,6 +18,13 @@
     dest: /etc/profile.d/editor.sh
   become: yes
 
+- name: Set nvim as EDITOR and VISUAL for zsh
+  copy:
+    src: etc/zsh/zshenv
+    dest: /etc/zsh/zshenv
+  become: yes
+  when: "'zsh' in role_names"
+
 - name: Create dir /etc/vim
   file:
     path: /etc/vim/
