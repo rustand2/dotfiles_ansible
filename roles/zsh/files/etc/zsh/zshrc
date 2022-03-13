@@ -15,9 +15,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # "..." alias for "../.." etc.
 antigen bundle knu/zsh-manydots-magic
 
-# 256 color zsh
-#antigen bundle chrissicool/zsh-256color
-
 antigen bundle zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=239"
 
@@ -54,15 +51,6 @@ man() {
 	command man "$@"
 }
 
-p() {
-	bb-wrapper --aur --build-dir /var/cache/bauerbill "$@" \
-	&& sudo pacdiff
-}
-
-
-alias pping='prettyping --nolegend'
-alias ccat='pygmentize -g'
-
 alias diff='diff --color=auto'
 
 # grc colorizing
@@ -83,7 +71,6 @@ alias cal='cal -m'
 alias dd='dd status=progress'
 alias watch='watch -c'
 alias less='less -R'
-alias tmux='tmux -2'
 
 __ls() {
 	grc ls -vFhC --group-directories-first --color=always \
