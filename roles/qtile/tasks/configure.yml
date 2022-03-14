@@ -1,0 +1,7 @@
+- name: Configure qtile
+  copy:
+    src: HOME/.config/qtile/config.py
+    dest: /home/{{ username }}/.config/qtile/config.py
+    mode: '0755'
+  become: yes
+  become_user: "{{ username }}"

@@ -19,6 +19,7 @@
     - neomutt
     - tmux
     - i3
+    - qtile
     - xkb
     - qutebrowser
     - wifi
