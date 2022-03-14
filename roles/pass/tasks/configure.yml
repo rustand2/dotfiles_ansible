@@ -1,9 +1,24 @@
+- name: Check if pass gpg key exist
+  command: gpg --list-keys {{ pass_gpg_key_id }}
+  register: gpg_list_keys
+  ignore_errors: true
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Create gpg key for password store
   script: gpg-gen-key.sh "Password Store" "{{ pass_gpg_key_id }}" {{ password }}
   become: yes
   become_user: "{{ username }}"
+  when: gpg_list_keys.rc == 2
+
+- name: Check if password store exists
+  stat:
+    path: /home/{{ username }}/.password-store/
+  register: password_store_dir
+  become: yes
 
 - name: Init password store
   command: pass init {{ pass_gpg_key_id }}
   become: yes
   become_user: "{{ username }}"
+  when: password_store_dir.stat.isdir is defined and password_store_dir.stat.isdir
