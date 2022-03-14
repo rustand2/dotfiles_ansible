@@ -1,0 +1,5 @@
+- name: Install qtile
+  package:
+    name:
+      - qtile
+  become: yes
