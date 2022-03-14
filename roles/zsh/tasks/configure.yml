@@ -18,9 +18,10 @@
   changed_when: false
 
 - name: Touch .zshrc
-  file:
-    path: /home/{{ username }}/.zshrc
-    state: file
+  copy:
+    content: ""
+    dest: /home/{{ username }}/.zshrc
+    force: no
   become: yes
   become_user: "{{ username }}"
 
@@ -32,9 +33,10 @@
   become_user: "{{ username }}"
 
 - name: Touch .zshrc
-  file:
-    path: /root/.zshrc
-    state: file
+  copy:
+    content: ""
+    dest: /root/.zshrc
+    force: no
   become: yes
 
 - name: Create zsh dircache
