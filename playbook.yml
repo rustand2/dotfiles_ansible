@@ -15,6 +15,7 @@
     - zsh
     - git
     - neovim
+    - pass
     - neomutt
     - tmux
     - i3

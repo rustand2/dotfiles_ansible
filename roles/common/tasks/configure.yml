@@ -32,7 +32,7 @@
 - name: Add user {{ username }}
   user:
     name: "{{ username }}"
-    password: "{{ password }}"
+    password: "{{ password | password_hash('sha512') }}"
     update_password: on_create
     group: "{{ username }}"
     groups: wheel

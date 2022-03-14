@@ -1,0 +1,6 @@
+- name: Install pass
+  package:
+    name:
+      - pass
+  become: yes
+

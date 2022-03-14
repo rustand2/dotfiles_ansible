@@ -1,0 +1,9 @@
+- name: Create gpg key for password store
+  script: gpg-gen-key.sh "Password Store" "{{ pass_gpg_key_id }}" {{ password }}
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Init password store
+  command: pass init {{ pass_gpg_key_id }}
+  become: yes
+  become_user: "{{ username }}"
