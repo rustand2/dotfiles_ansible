@@ -22,7 +22,7 @@
 - name: Install git hooks
   copy:
     src: "{{ item }}"
-    dest: /home/{{ username }}/
+    dest: /home/{{ username }}/.git_template/hooks/
   become: yes
   become_user: "{{ username }}"
   loop:
