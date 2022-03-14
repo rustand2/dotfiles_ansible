@@ -81,6 +81,15 @@ alias l='__ls -la'
 alias ll='__ls -l'
 alias la='__ls -la'
 
+# Avoid weird characters showing up when pressing arrows after escape
+# We do this by duplicating the keybinds with extra escape key codes
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[^[OA" up-line-or-beginning-search
+bindkey "^[^[^[OA" up-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
+bindkey "^[^[OB" down-line-or-beginning-search
+bindkey "^[^[^[OB" down-line-or-beginning-search
+
 # zsh tab completion same colors as LS_COLORS
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
