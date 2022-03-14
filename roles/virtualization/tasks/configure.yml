@@ -1,0 +1,6 @@
+- name: Add user to libvirt group
+  user:
+    name: '{{ username }}'
+    groups: libvirt
+    append: yes
+  become: yes
