@@ -1,0 +1,5 @@
+- name: Add neovim unstable ppa
+  ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/unstable
+  become: yes
+  when: ansible_distribution == 'Ubuntu'

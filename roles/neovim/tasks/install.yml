@@ -2,6 +2,6 @@
   package:
     name:
       - neovim
-      - python-pynvim
+        #- python-pynvim
     state: present
   become: yes
