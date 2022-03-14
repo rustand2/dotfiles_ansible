@@ -249,6 +249,10 @@ set foldmethod=indent   "fold based on indentation
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 
+" Smartcase searching
+set ignorecase
+set smartcase
+
 " X11 clipboard
 if exists('$DISPLAY')
     set clipboard=unnamedplus
