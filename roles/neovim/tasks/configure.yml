@@ -4,6 +4,12 @@
     dest: /etc/
   become: yes
 
+- name: Ensure /etc/xdg/nvim exists
+  file:
+    dest: /etc/xdg/nvim/
+    state: directory
+  become: yes
+
 - name: Link vimrc to neovim sysinit.vim
   file:
     src: /etc/vimrc
