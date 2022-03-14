@@ -1,0 +1,7 @@
+- name: Configure alacritty
+  copy:
+    src: HOME/.config/alacritty/alacritty.yml
+    dest: /home/{{ username }}/.config/alacritty/alacritty.yml
+    mode: '0755'
+  become: yes
+  become_user: "{{ username }}"

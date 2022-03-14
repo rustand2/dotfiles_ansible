@@ -20,6 +20,7 @@
     - tmux
     - i3
     - qtile
+    - alacritty
     - xkb
     - qutebrowser
     - wifi
