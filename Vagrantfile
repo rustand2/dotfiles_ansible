@@ -10,10 +10,13 @@ Vagrant.configure("2") do |config|
     arch.vm.box = "archlinux/archlinux"
   end
   config.vm.define "ubuntu" do |ubuntu|
-    ubuntu.vm.box = "ubuntu/impish64"
+    ubuntu.vm.box = "generic/ubuntu2110"
   end
   config.vm.define "debian" do |debian|
-    debian.vm.box = "debian/buster64"
+    debian.vm.box = "debian/bullseye64"
+  end
+  config.vm.define "debian-testing" do |debian_testing|
+    debian_testing.vm.box = "debian/testing64"
   end
 
   config.vm.synced_folder '.', '/vagrant', disabled: true
