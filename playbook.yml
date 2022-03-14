@@ -8,6 +8,8 @@
       backup: yes
     template:
       backup: yes
+    lineinfile:
+      backup: yes
   roles:
     - common
     - zsh
