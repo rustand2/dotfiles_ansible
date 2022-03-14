@@ -1,49 +1,22 @@
-- name: Create 'wheel' group
-  group:
-    name: wheel
-    state: present
-  become: yes
-
-- name: Allow 'wheel' group to sudo
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: '^%wheel'
-    line: '%wheel ALL=(ALL) ALL'
-    validate: 'visudo -cf %s'
-  become: yes
-
-- name: Create group for {{ username }}
-  group:
-    name: "{{ username }}"
-    state: present
-  become: yes
-
-- name: Add user {{ username }}
-  user:
-    name: "{{ username }}"
-    password: "{{ password }}"
-    update_password: on_create
-    group: "{{ username }}"
-    groups: wheel
-  become: yes
-
 - name: Set locale in locale.gen
   lineinfile:
     path: /etc/locale.gen
     regexp: "^#en_US.UTF-8 UTF-8"
     line: "en_US.UTF-8 UTF-8"
   become: yes
+  when: ansible_distribution == 'Archlinux'
 
 - name: Generate locale
   command: locale-gen
   become: yes
+  when: ansible_distribution == 'Archlinux'
 
 - name: Set LANG
   copy:
     content: "LANG=en_US.UTF-8"
     dest: /etc/locale.conf
   become: yes
+  when: ansible_distribution == 'Archlinux'
 
 - name: Set timezone
   file:

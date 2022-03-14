@@ -14,6 +14,8 @@
   stat:
     path: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins
   register: tpm
+  become: yes
+  become_user: "{{ username }}"
 
 - name: Install Tmux plugins
   command: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins

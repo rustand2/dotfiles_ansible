@@ -1,10 +1,27 @@
+- name: Install xorg
+  block:
+    - name: Install xorg
+      package:
+        name:
+          - xorg-server
+          - xorg-xinit
+          - xorg-xev
+          - xorg-xrandr
+        state: present
+      become: yes
+      when: ansible_distribution == 'Archlinux'
+
+    - name: Install xorg
+      package:
+        name:
+          - xserver-xorg
+        state: present
+      become: yes
+      when: ansible_os_family == 'Debian'
+
 - name: Install graphical environment
   package:
     name:
-      - xorg-server
-      - xorg-xinit
-      - xorg-xev
-      - xorg-xrandr
       - i3-wm
       - i3blocks
       - rofi

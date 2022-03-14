@@ -2,3 +2,5 @@
   command: xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop
   become: yes
   become_user: "{{ username }}"
+  when: ansible_distribution == 'Archlinux'
+    #TODO fix this for debian as well

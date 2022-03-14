@@ -1,12 +1,21 @@
 - name: Refresh package list
-  community.general.pacman:
-    update_cache: yes
-  become: yes
+  block:
+    - name: pacman -Sy
+      community.general.pacman:
+        update_cache: yes
+      become: yes
+      when: ansible_distribution == 'Archlinux'
+
+    - name: apt update
+      command: apt update
+      become: yes
+      when: ansible_os_family == 'Debian'
 
 - name: Upgrade system
   community.general.pacman:
     upgrade: yes
   become: yes
+  when: ansible_distribution == 'Archlinux'
 
 - name: Install base-devel
   package:
@@ -16,25 +25,63 @@
       - ntp
     state: present
   become: yes
+  when: ansible_distribution == 'Archlinux'
 
-- name: Install developer tools
+- name: Install sudo
   package:
     name:
-      - git
-      - htop
-      - openssh
-      - python
-      - ipython
-      - tree
-      - ncdu
-      - fzf
-      - unzip
-      - cmake
-      - pciutils
-      - usbutils
-      - man
+      - sudo
     state: present
   become: yes
+  when: ansible_distribution == 'FreeBSD'
+
+- name: Install acl
+  package:
+    name:
+      - acl
+    state: present
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install developer tools
+  block:
+    - name: Install developer tools
+      package:
+        name:
+          - git
+          - htop
+          - openssh
+          - python
+          - ipython
+          - tree
+          - ncdu
+          - fzf
+          - unzip
+          - cmake
+          - pciutils
+          - usbutils
+          - man
+        state: present
+      become: yes
+      when: ansible_distribution == 'Archlinux'
+
+    - name: Install developer tools
+      package:
+        name:
+          - git
+          - htop
+          - python3
+          - tree
+          - ncdu
+          - fzf
+          - unzip
+          - cmake
+          - pciutils
+          - usbutils
+          - man
+        state: present
+      become: yes
+      when: ansible_os_family == 'Debian'
 
 - name: Install GUI programs
   package:
