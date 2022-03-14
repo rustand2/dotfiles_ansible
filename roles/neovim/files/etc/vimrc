@@ -283,7 +283,7 @@ autocmd FocusLost * hi ActiveWindow ctermbg=NONE guibg=NONE
 
 " Restore tmux background color on exit
 if exists('$TMUX')
-    autocmd VimLeave * !tmux set window-active-style fg=default,bg=colour8
+    autocmd VimLeave * !tmux set window-active-style fg=default,bg="#002b36"
 endif
 
 " Automatically re-read file every second
