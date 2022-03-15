@@ -17,8 +17,6 @@ auto_view text/html
 # Order to try and show multipart emails
 alternative_order text/plain text/enriched text/html
 
-set ssl_starttls=no
-set ssl_force_tls=no
 # Use nvim but don't force text width (looks terible if read on a phone)
 set editor = "nvim +':set textwidth=0'"
 
