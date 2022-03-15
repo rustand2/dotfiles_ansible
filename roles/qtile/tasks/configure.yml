@@ -1,3 +1,10 @@
+- name: Ensure qtile config dir exists
+  file:
+    path: /home/{{ username }}/.config/qtile/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Configure qtile
   copy:
     src: HOME/.config/qtile/config.py

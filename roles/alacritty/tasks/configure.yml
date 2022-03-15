@@ -1,3 +1,10 @@
+- name: Ensure alacritty config dir exists
+  file:
+    path: /home/{{ username }}/.config/alacritty/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Configure alacritty
   copy:
     src: HOME/.config/alacritty/alacritty.yml
