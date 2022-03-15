@@ -7,8 +7,12 @@
 
 - name: Configure mutt
   copy:
-    src: HOME/.mutt/muttrc
-    dest: /home/{{ username }}/.mutt/muttrc
+    src: "{{ item }}"
+    dest: /home/{{ username }}/.mutt/
+  loop:
+    - HOME/.mutt/muttrc
+    - HOME/.mutt/colors
+    - HOME/.mutt/keybinds
   become: yes
   become_user: "{{ username }}"
 
