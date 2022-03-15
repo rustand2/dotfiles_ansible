@@ -1,6 +1,6 @@
 ---
 - block:
-  - include_tasks: configure.yml
+  - import_tasks: configure.yml
     tags:
       - configure
   tags:
