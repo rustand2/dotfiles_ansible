@@ -1,2 +1,7 @@
 ---
-- include_tasks: install.yml
+- block:
+  - include_tasks: install.yml
+    tags:
+      - install
+  tags:
+    - wifi

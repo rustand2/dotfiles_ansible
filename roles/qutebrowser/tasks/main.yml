@@ -1,4 +1,10 @@
 ---
-- include_tasks: install.yml
-- include_tasks: configure.yml
-
+- block:
+  - include_tasks: install.yml
+    tags:
+      - install
+  - include_tasks: configure.yml
+    tags:
+      - configure
+  tags:
+    - qutebrowser
