@@ -1,4 +1,4 @@
-- name: Configure i3
+- name: Ensure i3 config dir exists
   file:
     path: /home/{{ username }}/.config/i3/
     state: directory
