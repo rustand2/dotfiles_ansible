@@ -4,3 +4,10 @@
       - tmux
     state: present
   become: yes
+
+- name: Install xclip
+  package:
+    name:
+      - xclip
+    state: present
+  become: yes
