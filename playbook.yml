@@ -18,6 +18,7 @@
     - pass
     - neomutt
     - tmux
+    - autorandr
     - wm/qtile
     - terminal/alacritty
     - xkb

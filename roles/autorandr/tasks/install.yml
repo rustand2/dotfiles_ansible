@@ -1,0 +1,7 @@
+- name: Install autorandr
+  package:
+    name:
+      - autorandr
+    state: present
+  become: yes
+
