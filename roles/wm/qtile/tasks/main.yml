@@ -3,10 +3,11 @@
   - import_tasks: install.yml
     tags:
       - install
-      - i3.install
+      - qtile.install
   - import_tasks: configure.yml
     tags:
       - configure
-      - i3.configure
+      - qtile.configure
   tags:
-    - i3
+    - qtile
+    - gui

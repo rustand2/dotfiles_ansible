@@ -1,0 +1,7 @@
+- block:
+  - import_role:
+      name: wm/qtile
+  - import_role:
+      name: wm/i3
+  tags:
+    - wm/all

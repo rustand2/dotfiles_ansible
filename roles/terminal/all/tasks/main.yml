@@ -1,0 +1,5 @@
+- block:
+  - import_role:
+      name: alacritty
+  tags:
+    - terminal/all
