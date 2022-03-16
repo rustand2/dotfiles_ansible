@@ -18,9 +18,8 @@
     - pass
     - neomutt
     - tmux
-    - i3
-    - qtile
-    - alacritty
+    - wm/qtile
+    - terminal/alacritty
     - xkb
     - qutebrowser
     - wifi

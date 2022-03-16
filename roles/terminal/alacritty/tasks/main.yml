@@ -9,3 +9,4 @@
       - alacritty.configure
   tags:
     - alacritty
+    - gui
