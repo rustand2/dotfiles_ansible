@@ -5,3 +5,9 @@
     name:
       - qtile
   become: yes
+
+- name: Install qtile python dependencies
+  pip:
+    name:
+      - psutil
+      - iwlib
