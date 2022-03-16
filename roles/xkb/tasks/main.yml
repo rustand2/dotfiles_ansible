@@ -3,5 +3,6 @@
   - import_tasks: configure.yml
     tags:
       - configure
+      - xkb.configure
   tags:
     - xkb

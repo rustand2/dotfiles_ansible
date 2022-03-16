@@ -3,8 +3,10 @@
   - import_tasks: install.yml
     tags:
       - install
+      - virtualization.install
   - import_tasks: configure.yml
     tags:
       - configure
+      - virtualization.configure
   tags:
     - virtualization

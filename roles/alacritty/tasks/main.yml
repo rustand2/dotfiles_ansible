@@ -1,3 +1,11 @@
----
-- import_tasks: install.yml
-- import_tasks: configure.yml
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - alacritty.install
+  - import_tasks: configure.yml
+    tags:
+      - configure
+      - alacritty.configure
+  tags:
+    - alacritty

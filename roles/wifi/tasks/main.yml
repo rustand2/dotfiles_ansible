@@ -3,5 +3,6 @@
   - import_tasks: install.yml
     tags:
       - install
+      - wifi.install
   tags:
     - wifi
