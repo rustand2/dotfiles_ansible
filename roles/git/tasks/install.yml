@@ -1,0 +1,9 @@
+- name: Install git
+  package:
+    name:
+      - git
+
+- name: Install ctags
+  package:
+    name:
+      - ctags
