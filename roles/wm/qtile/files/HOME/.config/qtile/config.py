@@ -170,7 +170,7 @@ def move_left(qtile):
 
 
 def focus_right(qtile):
-    if qtile.current_window:
+    if qtile.current_window and hasattr(qtile.current_layout, "columns"):
         for w in qtile.current_window.group.windows:
             if w._x > qtile.current_window._x:
                 qtile.current_layout.cmd_right()
@@ -183,7 +183,7 @@ def focus_right(qtile):
 
 
 def focus_left(qtile):
-    if qtile.current_window:
+    if qtile.current_window and hasattr(qtile.current_layout, "columns"):
         for w in qtile.current_window.group.windows:
             if w._x < qtile.current_window._x:
                 qtile.current_layout.cmd_left()
