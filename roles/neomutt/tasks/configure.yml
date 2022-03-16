@@ -13,6 +13,7 @@
     - HOME/.mutt/muttrc
     - HOME/.mutt/colors
     - HOME/.mutt/keybinds
+    - HOME/.mutt/powerline
   become: yes
   become_user: "{{ username }}"
 

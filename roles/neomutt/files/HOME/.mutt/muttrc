@@ -1,6 +1,7 @@
 source gmail
 source colors
 source keybinds
+source powerline
 
 # Sort by threads
 set sort = threads
