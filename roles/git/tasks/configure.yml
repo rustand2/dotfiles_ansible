@@ -23,6 +23,7 @@
   copy:
     src: "{{ item }}"
     dest: /home/{{ username }}/.git_template/hooks/
+    mode: '0755'
   become: yes
   become_user: "{{ username }}"
   loop:
