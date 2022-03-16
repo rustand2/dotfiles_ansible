@@ -33,13 +33,6 @@
   become: yes
   become_user: "{{ username }}"
 
-- name: Configure xmodmap
-  copy:
-    src: HOME/.Xmodmap
-    dest: /home/{{ username }}/.Xmodmap
-  become: yes
-  become_user: "{{ username }}"
-
 - name: Configure xresources
   copy:
     src: HOME/.Xresources
