@@ -3,8 +3,10 @@
   - import_tasks: install.yml
     tags:
       - install
+      - neomutt.install
   - import_tasks: configure.yml
     tags:
       - configure
+      - neomutt.configure
   tags:
     - neomutt

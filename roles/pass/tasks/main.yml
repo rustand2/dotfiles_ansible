@@ -3,8 +3,10 @@
   - import_tasks: install.yml
     tags:
       - install
+      - pass.install
   - import_tasks: configure.yml
     tags:
       - configure
+      - pass.configure
   tags:
     - pass

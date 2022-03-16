@@ -3,8 +3,10 @@
   - import_tasks: install.yml
     tags:
       - install
+      - qutebrowser.install
   - import_tasks: configure.yml
     tags:
       - configure
+      - qutebrowser.configure
   tags:
     - qutebrowser
