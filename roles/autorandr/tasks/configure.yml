@@ -1,0 +1,6 @@
+- name: Install autorandr config
+  copy:
+    src: HOME/.config/autorandr/
+    dest: /home/{{ username }}/.config/autorandr/
+  become: yes
+  become_user: "{{ username }}"
