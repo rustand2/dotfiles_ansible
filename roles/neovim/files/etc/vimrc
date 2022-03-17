@@ -253,11 +253,6 @@ set nofoldenable        "dont fold by default
 set ignorecase
 set smartcase
 
-" X11 clipboard
-if exists('$DISPLAY')
-    set clipboard=unnamedplus
-endif
-
 " Line highlighting
 set cpoptions+=$
 set ruler
