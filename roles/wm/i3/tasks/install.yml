@@ -1,10 +1,7 @@
-- import_tasks: ../../_common/install_xorg.yml
-
 - name: Install graphical environment
   package:
     name:
       - i3-wm
       - i3blocks
-      - rofi
     state: present
   become: yes

@@ -1,5 +1,7 @@
 ---
 - block:
+  - import_tasks: ../../_common/main.yml
+
   - import_tasks: install.yml
     tags:
       - install
