@@ -1,0 +1,6 @@
+- name: Configure xresources
+  copy:
+    src: HOME/.Xresources
+    dest: /home/{{ username }}/.Xresources
+  become: yes
+  become_user: "{{ username }}"

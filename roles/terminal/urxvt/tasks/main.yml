@@ -1,0 +1,12 @@
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - urxvt.install
+  - import_tasks: configure.yml
+    tags:
+      - configure
+      - urxvt.configure
+  tags:
+    - urxvt
+    - gui

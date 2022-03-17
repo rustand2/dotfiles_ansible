@@ -6,6 +6,5 @@
       - i3-wm
       - i3blocks
       - rofi
-      - rxvt-unicode
     state: present
   become: yes
