@@ -9,72 +9,9 @@ set mouse=a
 set runtimepath+=/etc/vim,~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" Plugins
-call plug#begin('~/.vim/plugged')
-    " Theme stuff
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'vim-airline/vim-airline'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'lrustand/base16-vim'
-
-    " Tmux stuff
-    Plug 'roxma/vim-tmux-clipboard'
-    Plug 'sunaku/tmux-navigate'
-
-    " Completion stuff
-    Plug 'xavierd/clang_complete'
-    Plug 'ervandew/supertab'
-    Plug 'folke/which-key.nvim', { 'branch': 'main' }
-
-    " Undo tree
-    Plug 'simnalamburt/vim-mundo'
-
-    " Split maximizer
-    Plug 'lrustand/vim-maximizer'
-
-    " Syntax
-    Plug 'sirtaj/vim-openscad'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'PotatoesMaster/i3-vim-syntax'
-
-    " FZF
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-
-    " Ag
-    Plug 'rking/ag.vim'
-
-    " Latex
-    Plug 'xuhdev/vim-latex-live-preview'
-
-    " Git (TODO do we need both?)
-    Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
-
-    " Python REPL
-    Plug 'jpalardy/vim-slime'
-
-    " Nerdtree
-    Plug 'scrooloose/nerdtree'
-    "Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'lrustand/nerdtree-visual-selection'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-    " Other, TODO needs sorting and cleaning
-    Plug 'neovim/python-client'
-    Plug 'majutsushi/tagbar'
-    Plug 'xolox/vim-misc'
-    Plug 'kshenoy/vim-signature'
-    Plug 'norcalli/nvim-colorizer.lua'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'ntpeters/vim-better-whitespace'
-
-    " Dev icons, always load last
-    Plug 'ryanoasis/vim-devicons' " Requires NERD font: https://aur.archlinux.org/packages/nerd-fonts-dejavu-complete
-
-call plug#end()
+runtime plugins.vim
+runtime nerdtree.vim
+runtime keybinds.vim
 
 set termguicolors
 lua require'colorizer'.setup()
@@ -83,10 +20,6 @@ lua require'colorizer'.setup()
 let g:slime_python_ipython = 1
 let g:slime_target = "neovim"
 
-" Set leader to space
-let mapleader =" "
-
-nnoremap <F5> :MundoToggle<CR>:call s:MundoPython('MundoRenderGraph()')<CR>
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -100,14 +33,6 @@ let g:clang_complete_auto=0
 let g:SuperTabDefaultCompletionType = 'context'
 set completeopt=menu,menuone,longest
 set pumheight=15
-
-
-" Maximize current pane with <C-w>
-let g:maximizer_set_default_mapping = 0
-nnoremap <silent><C-w>z :MaximizerToggle<CR>
-vnoremap <silent><C-w>z :MaximizerToggle<CR>gv
-inoremap <silent><C-w>z <C-o>:MaximizerToggle<CR>
-tnoremap <silent><C-w>z <Cmd>MaximizerToggle<CR>
 
 
 let g:fzf_colors =
@@ -154,31 +79,6 @@ set undofile
 " set a directory to store the undo history
 set undodir=~/.vimundo/
 
-" Ctrl-s
-nmap <C-s> :up<CR>
-vmap <C-s> <ESC>:up<CR>gv
-imap <C-s> <C-o>:up<CR>
-
-" Ctrl-k Ctrl-u
-inoremap <C-k> <C-o>dg_
-inoremap <C-u> <C-o>d^
-
-" Ctrl-Up Ctrl-Down move paragraph
-inoremap <C-Up> <C-o>{
-nnoremap <C-Up> {
-vnoremap <C-Up> {
-inoremap <C-Down> <C-o>}
-nnoremap <C-Down> }
-vnoremap <C-Down> }
-
-
-" delete words in insert mode
-inoremap <C-BS> <C-W>
-inoremap <C-Del> <C-o>dw
-
-" terminal mappings
-tnoremap <C-g> <C-\><C-n>
-tnoremap <ESC>: <C-\><C-n>:
 
 if has('nvim')
     augroup terminal_setup | au!
@@ -198,40 +98,6 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
-
-" Start NERDTree if no file argument
-function! StartUp()
-    if !argc() && !exists("s:std_in")
-        NERDTree
-    end
-    if argc() && isdirectory(argv()[0]) && !exists("s:std_in")
-        ene
-        exe 'NERDTree' argv()[0]
-        cd `=argv()[0]`
-    end
-endfunction
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * call StartUp()
-
-" Replace NERDTree folder arrows with folder open close symbols
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:DevIconsDefaultFolderOpenSymbol='' " symbol for open folder (f07c)
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol='' " symbol for closed folder (f07b)
-let g:NERDTreeDirArrowExpandable = ""
-let g:NERDTreeDirArrowCollapsible = ""
-
-" Remove extra padding between git icons and file icons
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
-
-" Remove help string from top of NERDTree
-let NERDTreeMinimalUI=1
-
-" indentation in Visual mode
-vnoremap <S-Tab> <gv
-vnoremap <Tab> >gv
-
-" backspace delete in visual mode
-vnoremap <BS> <Del>
 
 " powerline fonts
 let g:airline_powerline_fonts = 1
@@ -295,10 +161,6 @@ function! Timer()
   " there are numerous other keysequences that you can use
   checktime
 endfunction
-
-" Fix vim tmux navigator in nersdtree
-let g:NERDTreeMapJumpPrevSibling=""
-let g:NERDTreeMapJumpNextSibling=""
 
 " Syntax highlighting on
 syntax on

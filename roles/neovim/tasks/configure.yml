@@ -1,8 +1,24 @@
-- name: Install vimrc
+- name: Create dir /etc/vim
+  file:
+    path: /etc/vim/
+    state: directory
+  become: yes
+
+- name: Install main vimrc
   copy:
     src: etc/vimrc
     dest: /etc/
   become: yes
+
+- name: Install vimrc sub files
+  copy:
+    src: "{{ item }}"
+    dest: /etc/vim/
+  become: yes
+  loop:
+    - etc/vim/keybinds.vim
+    - etc/vim/plugins.vim
+    - etc/vim/nerdtree.vim
 
 - name: Ensure /etc/xdg/nvim exists
   file:
@@ -30,12 +46,6 @@
     dest: /etc/zsh/zshenv
   become: yes
   when: "'zsh' in role_names"
-
-- name: Create dir /etc/vim
-  file:
-    path: /etc/vim/
-    state: directory
-  become: yes
 
 - name: Create vim autoload dir
   file:
