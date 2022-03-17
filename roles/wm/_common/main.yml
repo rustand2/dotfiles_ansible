@@ -1,0 +1,3 @@
+- import_tasks: install_xorg.yml
+- import_tasks: install_rofi.yml
+
