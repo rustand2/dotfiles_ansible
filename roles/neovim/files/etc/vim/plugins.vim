@@ -22,9 +22,6 @@ call plug#begin('~/.vim/plugged')
     " Undo tree
     Plug 'simnalamburt/vim-mundo'
 
-    " Split maximizer
-    Plug 'lrustand/vim-maximizer'
-
     " Syntax
     Plug 'sirtaj/vim-openscad'
     Plug 'sheerun/vim-polyglot'
