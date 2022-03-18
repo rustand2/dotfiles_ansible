@@ -4,11 +4,10 @@ let mapleader =" "
 nnoremap <F5> :MundoToggle<CR>:call s:MundoPython('MundoRenderGraph()')<CR>
 
 " Maximize current pane with <C-w>
-let g:maximizer_set_default_mapping = 0
-nnoremap <silent><C-w>z :MaximizerToggle<CR>
-vnoremap <silent><C-w>z :MaximizerToggle<CR>gv
-inoremap <silent><C-w>z <C-o>:MaximizerToggle<CR>
-tnoremap <silent><C-w>z <Cmd>MaximizerToggle<CR>
+nnoremap <silent><C-w>z :tabedit %<CR>
+vnoremap <silent><C-w>z :tabedit %<CR>gv
+inoremap <silent><C-w>z <C-o>:tabedit %<CR>
+tnoremap <silent><C-w>z <Cmd>:tabedit %<CR>
 
 " Ctrl-s
 nmap <C-s> :up<CR>
