@@ -4,4 +4,4 @@
       - rofi
     state: present
   become: yes
-
+  tags: gui
