@@ -11,9 +11,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'sunaku/tmux-navigate'
 
     " Completion stuff
-    Plug 'xavierd/clang_complete'
-    Plug 'ervandew/supertab'
     Plug 'folke/which-key.nvim', { 'branch': 'main' }
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
 
     " Undo tree
     Plug 'simnalamburt/vim-mundo'
