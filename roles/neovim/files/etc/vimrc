@@ -35,6 +35,15 @@ let g:SuperTabDefaultCompletionType = 'context'
 set completeopt=menu,menuone,longest
 set pumheight=15
 
+" Improve airline widgets truncation in smaller windows
+let g:airline#extensions#default#section_truncate_width = {
+  \ 'b': 75,
+  \ 'x': 80,
+  \ 'y': 200,
+  \ 'z': 45,
+  \ 'warning': 80,
+  \ 'error': 80,
+  \ }
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
