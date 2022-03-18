@@ -2,7 +2,20 @@
   package:
     name:
       - neovim
-        #- python-pynvim
+    state: present
+  become: yes
+
+- name: Install pynvim
+  pip:
+    name:
+      - pynvim
+    state: present
+  become: yes
+
+- name: Install neovim-remote
+  pip:
+    name:
+      - neovim-remote
     state: present
   become: yes
 
