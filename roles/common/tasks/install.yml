@@ -101,3 +101,10 @@
   become: yes
   tags:
     - gui
+
+- name: Install pip
+  package:
+    name:
+      - python-pip
+    state: present
+  become: yes
