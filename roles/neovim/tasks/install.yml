@@ -12,6 +12,8 @@
       - xclip
     state: present
   become: yes
+  tags:
+    - gui
 
 - name: Install python language server and dependencies
   block:

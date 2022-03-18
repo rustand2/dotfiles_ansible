@@ -13,6 +13,9 @@
     name: wheel
     state: present
   become: yes
+  tags:
+    - user
+    - sudo
 
 - name: Allow 'wheel' group to sudo
   lineinfile:
@@ -22,12 +25,17 @@
     line: '%wheel ALL=(ALL) ALL'
     validate: 'visudo -cf %s'
   become: yes
+  tags:
+    - user
+    - sudo
 
 - name: Create group for {{ username }}
   group:
     name: "{{ username }}"
     state: present
   become: yes
+  tags:
+    - user
 
 - name: Add user {{ username }}
   user:
@@ -37,4 +45,6 @@
     group: "{{ username }}"
     groups: wheel
   become: yes
+  tags:
+    - user
 

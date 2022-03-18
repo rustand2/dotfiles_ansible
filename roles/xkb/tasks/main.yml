@@ -6,3 +6,4 @@
       - xkb.configure
   tags:
     - xkb
+    - gui
