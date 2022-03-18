@@ -15,21 +15,12 @@
   tags:
     - gui
 
-- name: Install python language server and dependencies
-  block:
-    - name: Install pip
-      package:
-        name:
-          - python-pip
-        state: present
-      become: yes
-
-    - name: Install python language server
-      pip:
-        name:
-          - "python-lsp-server[all]"
-        state: present
-      become: yes
+- name: Install python language server
+  pip:
+    name:
+      - "python-lsp-server[all]"
+    state: present
+  become: yes
   tags:
     - python
     - lsp
