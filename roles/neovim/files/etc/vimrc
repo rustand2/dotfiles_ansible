@@ -134,6 +134,12 @@ if exists('$DISPLAY')
     set clipboard=unnamedplus
 endif
 
+" Open git edits in a vim split when running in :terminal
+if has('nvim')
+  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+endif
+autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+
 " Line highlighting
 set cpoptions+=$
 set ruler
