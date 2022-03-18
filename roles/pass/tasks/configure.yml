@@ -21,4 +21,4 @@
   command: pass init {{ pass_gpg_key_id }}
   become: yes
   become_user: "{{ username }}"
-  when: password_store_dir.stat.isdir is defined and password_store_dir.stat.isdir
+  when: password_store_dir.stat.exists == false
