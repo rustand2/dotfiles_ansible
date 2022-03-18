@@ -1,7 +1,5 @@
 ---
 - block:
-  - import_tasks: ../../_common/main.yml
-
   - import_tasks: install.yml
     tags:
       - install
@@ -11,5 +9,6 @@
       - configure
       - i3.configure
   tags:
+    - wm
     - i3
     - gui

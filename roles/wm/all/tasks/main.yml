@@ -1,7 +1,13 @@
-- block:
-  - import_role:
-      name: wm/qtile
-  - import_role:
-      name: wm/i3
+- import_role:
+    name: wm/qtile
   tags:
     - wm/all
+    - qtile
+    - wm
+
+- import_role:
+    name: wm/i3
+  tags:
+    - wm/all
+    - i3
+    - wm
