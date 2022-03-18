@@ -10,3 +10,4 @@
       - qutebrowser.configure
   tags:
     - qutebrowser
+    - gui

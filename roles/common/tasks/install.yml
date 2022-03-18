@@ -10,12 +10,16 @@
       command: apt update
       become: yes
       when: ansible_os_family == 'Debian'
+  tags:
+    - update
 
 - name: Upgrade system
   community.general.pacman:
     upgrade: yes
   become: yes
   when: ansible_distribution == 'Archlinux'
+  tags:
+    - update
 
 - name: Install base-devel
   package:
@@ -34,6 +38,8 @@
     state: present
   become: yes
   when: ansible_distribution == 'FreeBSD'
+  tags:
+    - sudo
 
 - name: Install acl
   package:
@@ -93,3 +99,5 @@
       - mpv
     state: present
   become: yes
+  tags:
+    - gui
