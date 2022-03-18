@@ -2,8 +2,18 @@
   package:
     name:
       - git
+  become: yes
 
 - name: Install ctags
   package:
     name:
       - ctags
+  become: yes
+  when: ansible_distribution == 'Archlinux'
+
+- name: Install ctags
+  package:
+    name:
+      - universal-ctags
+  become: yes
+  when: ansible_os_family == 'Debian'
