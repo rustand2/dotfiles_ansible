@@ -1,0 +1,26 @@
+- name: Install fonts
+  package:
+    name:
+      - ttf-dejavu
+    state: present
+  become: yes
+  tags:
+    - gui
+
+- name: Install emoji font
+  package:
+    name:
+      - noto-fonts-emoji
+    state: present
+  become: yes
+  tags:
+    - gui
+    - emoji
+
+- name: Configure fonts
+  copy:
+    src: etc/fonts/local.conf
+    dest: /etc/fonts/local.conf
+  tags:
+    - gui
+    - emoji
