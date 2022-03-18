@@ -12,6 +12,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 runtime plugins.vim
 runtime nerdtree.vim
 runtime keybinds.vim
+runtime completion.vim
 
 set termguicolors
 lua require'colorizer'.setup()

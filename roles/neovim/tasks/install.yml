@@ -12,3 +12,50 @@
       - xclip
     state: present
   become: yes
+
+- name: Install python language server and dependencies
+  block:
+    - name: Install pip
+      package:
+        name:
+          - python-pip
+        state: present
+      become: yes
+
+    - name: Install python language server
+      pip:
+        name:
+          - "python-lsp-server[all]"
+        state: present
+      become: yes
+  tags:
+    - python
+    - lsp
+
+- name: Install vimscript language server and dependencies
+  block:
+    - name: Install npm
+      package:
+        name:
+          - npm
+        state: present
+      become: yes
+
+    - name: Install vimscript language server
+      npm:
+        name: vim-language-server
+        global: yes
+      become: yes
+  tags:
+    - vimscript
+    - lsp
+
+- name: Install C/C++ language server
+  package:
+    name:
+      - ccls
+    state: present
+  become: yes
+  tags:
+    - c
+    - cpp

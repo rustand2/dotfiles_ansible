@@ -19,6 +19,7 @@
     - etc/vim/keybinds.vim
     - etc/vim/plugins.vim
     - etc/vim/nerdtree.vim
+    - etc/vim/completion.vim
 
 - name: Ensure /etc/xdg/nvim exists
   file:
