@@ -5,3 +5,10 @@
       - offlineimap
     state: present
   become: yes
+
+- name: Install viu image viewer
+  package:
+    name:
+      - viu
+    state: present
+  become: yes

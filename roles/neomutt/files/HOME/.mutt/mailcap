@@ -1,5 +1,14 @@
 text/html; qutebrowser %s; nametemplate=%s.html
 text/html; w3m -I %{charset} -T text/html -dump; copiousoutput;
-image/png; feh %s
-image/jpeg; feh %s
+
+image/*; clear && viu -t %s && read -n 1 -s -r -p "Press any key to continue" && clear;
 application/pdf; okular %s
+
+application/x-tar; tar --list %s; copiousoutput
+application/zip; unzip -l %s; copiousoutput
+application/x-xz; xz -l %s; copiousoutput
+application/x-gunzip;   gzcat; copiousoutput
+application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
+
+# Fake cap for pgp signature, got better idea ?
+application/pgp-signature; cat '%s'; copiousoutput
