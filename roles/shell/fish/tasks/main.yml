@@ -4,5 +4,9 @@
     tags:
       - install
       - fish.install
+  - import_tasks: configure.yml
+    tags:
+      - configure
+      - fish.configure
   tags:
     - fish

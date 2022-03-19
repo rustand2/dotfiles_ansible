@@ -12,11 +12,6 @@
     - etc/zsh/dirstack.zsh
     - etc/zsh/undistract-me.zsh
 
-- name: Set shell to zsh
-  command: usermod --shell /bin/zsh {{ username }}
-  become: yes
-  changed_when: false
-
 - name: Touch .zshrc
   copy:
     content: ""
@@ -44,3 +39,9 @@
     path: /root/.cache/zsh/
     state: directory
   become: yes
+
+- name: Set shell to zsh
+  command: usermod --shell /bin/zsh {{ username }}
+  become: yes
+  changed_when: false
+  when: shell == 'zsh'

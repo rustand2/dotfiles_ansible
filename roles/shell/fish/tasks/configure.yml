@@ -1,0 +1,5 @@
+- name: Set shell to fish
+  command: usermod --shell /usr/bin/fish {{ username }}
+  become: yes
+  changed_when: false
+  when: shell == 'fish'
