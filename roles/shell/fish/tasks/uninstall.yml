@@ -1,0 +1,6 @@
+- name: Uninstall fish shell
+  package:
+    name:
+      - fish
+    state: absent
+  become: yes

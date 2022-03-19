@@ -1,0 +1,48 @@
+- name: Uninstall qtile
+  package:
+    name:
+      - qtile
+    state: absent
+  become: yes
+  when: ansible_distribution == 'Archlinux'
+
+- name: Uninstall qtile
+  pip:
+    name:
+      - qtile
+    state: absent
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+# TODO: decide if uninstalling dependencies
+- name: Uninstall libiw
+  package:
+    name:
+      - libiw-dev
+    state: absent
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Uninstall iwlib
+  pip:
+    name:
+      - iwlib
+    state: absent
+  become: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Uninstall iwlib
+  package:
+    name:
+      - iw
+      - python-iwlib
+    state: absent
+  become: yes
+  when: ansible_distribution == 'Archlinux'
+
+- name: Uninstall qtile python dependencies
+  pip:
+    name:
+      - psutil
+    state: absent
+  become: yes

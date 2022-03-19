@@ -1,0 +1,6 @@
+- name: Uninstall autorandr
+  package:
+    name:
+      - autorandr
+    state: absent
+  become: yes

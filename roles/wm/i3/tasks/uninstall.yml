@@ -1,0 +1,7 @@
+- name: Uninstall i3 environment
+  package:
+    name:
+      - i3-wm
+      - i3blocks
+    state: absent
+  become: yes

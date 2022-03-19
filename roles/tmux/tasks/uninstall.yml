@@ -1,0 +1,13 @@
+- name: Uninstall tmux
+  package:
+    name:
+      - tmux
+    state: absent
+  become: yes
+
+- name: Uninstall xclip
+  package:
+    name:
+      - xclip
+    state: absent
+  become: yes

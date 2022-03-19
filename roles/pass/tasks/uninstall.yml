@@ -1,0 +1,7 @@
+- name: Uninstall pass
+  package:
+    name:
+      - pass
+    state: absent
+  become: yes
+

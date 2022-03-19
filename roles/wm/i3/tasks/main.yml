@@ -12,3 +12,9 @@
     - wm
     - i3
     - gui
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - i3.uninstall

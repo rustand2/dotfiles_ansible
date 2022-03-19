@@ -10,3 +10,9 @@
       - pass.configure
   tags:
     - pass
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - pass.uninstall

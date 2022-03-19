@@ -1,0 +1,15 @@
+- name: Uninstall wifi tools
+  package:
+    name:
+      - networkmanager
+    state: absent
+  become: yes
+  when: ansible_distribution == 'Archlinux'
+
+- name: Uninstall wifi tools
+  package:
+    name:
+      - network-manager
+    state: absent
+  become: yes
+  when: ansible_os_family == 'Debian'

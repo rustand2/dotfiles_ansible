@@ -1,0 +1,57 @@
+- name: Uninstall neovim
+  package:
+    name:
+      - neovim
+    state: absent
+  become: yes
+
+- name: Uninstall pynvim
+  pip:
+    name:
+      - pynvim
+    state: absent
+  become: yes
+
+- name: Uninstall neovim-remote
+  pip:
+    name:
+      - neovim-remote
+    state: absent
+  become: yes
+
+- name: Uninstall xclip
+  package:
+    name:
+      - xclip
+    state: absent
+  become: yes
+
+- name: Uninstall python language server
+  pip:
+    name:
+      - "python-lsp-server[all]"
+    state: absent
+  become: yes
+
+- name: Uninstall vimscript language server and dependencies
+  block:
+    - name: Uninstall vimscript language server
+      npm:
+        name: vim-language-server
+        global: yes
+        state: absent
+      become: yes
+
+    - name: Uninstall npm
+      package:
+        name:
+          - npm
+        state: absent
+      become: yes
+
+- name: Uninstall C/C++ language server
+  package:
+    name:
+      - ccls
+    state: absent
+  become: yes

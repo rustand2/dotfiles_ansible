@@ -10,3 +10,9 @@
       - fish.configure
   tags:
     - fish
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - fish.uninstall

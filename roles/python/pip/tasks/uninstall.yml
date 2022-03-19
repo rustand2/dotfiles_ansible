@@ -1,0 +1,13 @@
+- name: Uninstall python wheel
+  pip:
+    name:
+      - wheel
+    state: absent
+  become: yes
+
+- name: Uninstall pip
+  package:
+    name:
+      - python-pip
+    state: absent
+  become: yes

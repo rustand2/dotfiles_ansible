@@ -7,3 +7,9 @@
   tags:
     - pip
     - python
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - pip.uninstall

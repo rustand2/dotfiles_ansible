@@ -1,0 +1,9 @@
+- name: Uninstall bluetooth tools
+  package:
+    name:
+      - bluez
+      - bluez-tools
+      - bluez-utils
+      - pulseaudio-bluetooth
+    state: absent
+  become: yes

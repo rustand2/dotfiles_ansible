@@ -1,0 +1,14 @@
+- name: Uninstall neomutt
+  package:
+    name:
+      - neomutt
+      - offlineimap
+    state: absent
+  become: yes
+
+- name: Uninstall viu image viewer
+  package:
+    name:
+      - viu
+    state: absent
+  become: yes

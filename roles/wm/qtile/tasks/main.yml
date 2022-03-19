@@ -12,3 +12,9 @@
     - wm
     - qtile
     - gui
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - qtile.uninstall

@@ -6,3 +6,9 @@
       - bluetooth.install
   tags:
     - bluetooth
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - bluetooth.uninstall

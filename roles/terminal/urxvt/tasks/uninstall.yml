@@ -1,0 +1,6 @@
+- name: Uninstall urxvt
+  package:
+    name:
+      - rxvt-unicode
+    state: absent
+  become: yes

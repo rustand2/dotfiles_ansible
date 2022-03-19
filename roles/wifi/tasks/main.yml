@@ -6,3 +6,9 @@
       - wifi.install
   tags:
     - wifi
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - wifi.uninstall
