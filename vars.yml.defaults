@@ -3,3 +3,4 @@ password: <YOUR_PASSWORD>
 fullname: "<YOUR_FULL_NAME>"
 email: <YOUR_EMAIL_ADDRESS>
 pass_gpg_key_id: <YOUR_GPG_KEY_ID>
+shell: <DEFAULT_SHELL>
