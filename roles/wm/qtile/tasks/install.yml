@@ -12,12 +12,6 @@
   become: yes
   when: ansible_os_family == 'Debian'
 
-- name: Install python wheel
-  pip:
-    name:
-      - wheel
-  become: yes
-
 - name: Install libiw
   package:
     name:

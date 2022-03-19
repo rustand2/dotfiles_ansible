@@ -1,0 +1,9 @@
+---
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - pip.install
+  tags:
+    - pip
+    - python
