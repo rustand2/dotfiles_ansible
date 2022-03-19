@@ -11,3 +11,9 @@
   tags:
     - qutebrowser
     - gui
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - qutebrowser.uninstall

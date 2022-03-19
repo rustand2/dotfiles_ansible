@@ -1,0 +1,6 @@
+- name: Uninstall qutebrowser
+  package:
+    name:
+      - qutebrowser
+    state: absent
+  become: yes

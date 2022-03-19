@@ -10,3 +10,9 @@
       - zsh.configure
   tags:
     - zsh
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - zsh.uninstall

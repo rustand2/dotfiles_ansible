@@ -1,0 +1,23 @@
+- name: Uninstall git
+  package:
+    name:
+      - git
+    state: absent
+  become: yes
+
+- name: Uninstall ctags
+  package:
+    name:
+      - ctags
+    state: absent
+  become: yes
+  when: ansible_distribution == 'Archlinux'
+
+- name: Uninstall ctags
+  package:
+    name:
+      - universal-ctags
+    state: absent
+  become: yes
+  when: ansible_os_family == 'Debian'
+

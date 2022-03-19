@@ -1,0 +1,20 @@
+- name: Uninstall virtualization tools
+  block:
+    - name: Uninstall virtualization tools
+      package:
+        name:
+          - qemu
+          - libvirt
+        state: absent
+      become: yes
+      when: ansible_distribution == 'Archlinux'
+
+    - name: Uninstall virtualization tools
+      package:
+        name:
+          - qemu-system
+          - libvirt-daemon-system
+          - virt-manager
+        state: absent
+      become: yes
+      when: ansible_os_family == 'Debian'

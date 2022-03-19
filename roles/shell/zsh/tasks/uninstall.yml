@@ -1,0 +1,6 @@
+- name: Uninstall zsh shell
+  package:
+    name:
+      - zsh
+    state: absent
+  become: yes

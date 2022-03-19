@@ -10,3 +10,9 @@
       - tmux.configure
   tags:
     - tmux
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - tmux.uninstall

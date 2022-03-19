@@ -10,3 +10,9 @@
   tags:
     - urxvt
     - gui
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - urxvt.uninstall

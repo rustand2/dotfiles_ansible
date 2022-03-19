@@ -14,3 +14,9 @@
       - neovim.configure
   tags:
     - neovim
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - neovim.uninstall

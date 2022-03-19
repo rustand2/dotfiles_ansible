@@ -10,3 +10,9 @@
       - git.configure
   tags:
     - git
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - git.uninstall

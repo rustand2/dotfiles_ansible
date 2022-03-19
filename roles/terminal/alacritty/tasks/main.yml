@@ -10,3 +10,9 @@
   tags:
     - alacritty
     - gui
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - alacritty.uninstall

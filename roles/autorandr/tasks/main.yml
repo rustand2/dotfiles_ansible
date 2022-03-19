@@ -10,3 +10,9 @@
       - autorandr.configure
   tags:
     - autorandr
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - autorandr.uninstall

@@ -10,3 +10,9 @@
       - neomutt.configure
   tags:
     - neomutt
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - neomutt.uninstall
