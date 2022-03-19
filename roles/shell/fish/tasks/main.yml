@@ -1,0 +1,8 @@
+---
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - fish.install
+  tags:
+    - fish

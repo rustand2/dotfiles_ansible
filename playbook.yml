@@ -12,7 +12,7 @@
       backup: yes
   roles:
     - common
-    - zsh
+    - shell/zsh
     - git
     - neovim
     - pass
