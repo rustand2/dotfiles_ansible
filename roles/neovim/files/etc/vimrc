@@ -14,8 +14,11 @@ runtime nerdtree.vim
 runtime keybinds.vim
 runtime completion.vim
 
-set termguicolors
-lua require'colorizer'.setup()
+if $COLORTERM == 'truecolor'
+    set termguicolors
+    " TODO find alternative for no truecolor also
+    lua require'colorizer'.setup()
+endif
 
 " Set up python repl
 let g:slime_python_ipython = 1
