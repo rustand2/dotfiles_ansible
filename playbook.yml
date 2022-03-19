@@ -24,4 +24,5 @@
     - xkb
     - qutebrowser
     - wifi
+    - bluetooth
     - virtualization
