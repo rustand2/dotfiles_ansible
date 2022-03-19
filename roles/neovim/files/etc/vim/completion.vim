@@ -1,4 +1,6 @@
-set completeopt=menu,menuone,noselect
+set completeopt=menu,menuone,longest
+set pumheight=15
+
 
 lua <<EOF
   -- Setup nvim-cmp.
