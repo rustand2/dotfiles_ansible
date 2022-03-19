@@ -1,0 +1,7 @@
+- name: Install 3d design progs
+  package:
+    name:
+      - openscad
+      - blender
+    state: present
+  become: yes
