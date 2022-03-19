@@ -1,0 +1,17 @@
+---
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - 2d.install
+  tags:
+    - 2d
+    - design
+    - gui
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - 2d.uninstall
+    - design/2d.uninstall

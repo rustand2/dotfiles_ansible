@@ -1,0 +1,7 @@
+- name: Install 2d design progs
+  package:
+    name:
+      - gimp
+      - inkscape
+    state: present
+  become: yes

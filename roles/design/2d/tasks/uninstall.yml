@@ -1,0 +1,7 @@
+- name: Uninstall 2d design progs
+  package:
+    name:
+      - gimp
+      - inkscape
+    state: absent
+  become: yes

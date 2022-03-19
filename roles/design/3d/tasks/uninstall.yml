@@ -1,0 +1,7 @@
+- name: Uninstall 3d design progs
+  package:
+    name:
+      - openscad
+      - blender
+    state: absent
+  become: yes
