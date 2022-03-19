@@ -1,8 +1,8 @@
 ---
 - block:
   - import_role:
-      name: fish
+      name: shell/fish
   - import_role:
-      name: zsh
+      name: shell/zsh
   tags:
     - shell/all

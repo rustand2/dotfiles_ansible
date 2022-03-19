@@ -1,7 +1,7 @@
 - block:
   - import_role:
-      name: alacritty
+      name: terminal/alacritty
   - import_role:
-      name: urxvt
+      name: terminal/urxvt
   tags:
     - terminal/all
