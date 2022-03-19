@@ -1,0 +1,9 @@
+- name: Install bluetooth tools
+  package:
+    name:
+      - bluez
+      - bluez-tools
+      - bluez-utils
+      - pulseaudio-bluetooth
+    state: present
+  become: yes
