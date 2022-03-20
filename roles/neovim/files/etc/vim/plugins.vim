@@ -19,6 +19,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
 
+    " Image view
+    Plug 'lrustand/image.vim'
+
     " Undo tree
     Plug 'simnalamburt/vim-mundo'
 
