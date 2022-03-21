@@ -7,17 +7,6 @@
 
 - name: Uninstall ctags
   package:
-    name:
-      - ctags
+    name: "{{ ctags }}"
     state: absent
   become: yes
-  when: ansible_distribution == 'Archlinux'
-
-- name: Uninstall ctags
-  package:
-    name:
-      - universal-ctags
-    state: absent
-  become: yes
-  when: ansible_os_family == 'Debian'
-

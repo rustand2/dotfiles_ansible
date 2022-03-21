@@ -1,15 +1,5 @@
 - name: Install wifi tools
   package:
-    name:
-      - networkmanager
+    name: "{{ networkmanager }}"
     state: present
   become: yes
-  when: ansible_distribution == 'Archlinux'
-
-- name: Install wifi tools
-  package:
-    name:
-      - network-manager
-    state: present
-  become: yes
-  when: ansible_os_family == 'Debian'

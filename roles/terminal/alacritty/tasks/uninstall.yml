@@ -4,12 +4,3 @@
       - alacritty
     state: absent
   become: yes
-  when: ansible_distribution == 'Archlinux'
-
-- name: Uninstall alacritty
-  apt:
-    name: alacritty
-    state: absent
-  become: yes
-  when: ansible_os_family == 'Debian'
-
