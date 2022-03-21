@@ -18,6 +18,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'rafamadriz/friendly-snippets'
+    Plug 'saadparwaiz1/cmp_luasnip'
 
     " Image view
     Plug 'lrustand/image.vim'

@@ -13,17 +13,19 @@ lua <<EOF
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
   end
 
+  local luasnip = require("luasnip")
+  require('luasnip/loaders/from_vscode').load()
   local cmp = require'cmp'
 
   cmp.setup({
     completion = {
-      autocomplete = false, -- disable auto-completion.
+        autocomplete = false
     },
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
         -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
@@ -42,6 +44,8 @@ lua <<EOF
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
+        -- elseif vim.fn["vsnip#available"](1) == 1 then
+        --   feedkey("<Plug>(vsnip-expand-or-jump)", "")
         elseif has_words_before() then
           cmp.complete()
         else
@@ -49,16 +53,39 @@ lua <<EOF
         end
       end, { "i", "s" }),
 
-      ["<S-Tab>"] = cmp.mapping(function()
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
         end
       end, { "i", "s" }),
+    },
+    formatting = {
+        format = function(entry, vim_item)
+            local alias = {
+                buffer = 'buffer',
+                path = 'path',
+                nvim_lsp = 'LSP',
+                -- vsnip = 'VSnip',
+                luasnip = 'LuaSnip',
+                nvim_lua = 'Lua',
+            }
+
+            if entry.source.name == 'nvim_lsp' then
+                vim_item.menu = entry.source.source.client.name
+            else
+                vim_item.menu = alias[entry.source.name] or entry.source.name
+            end
+            return vim_item
+        end,
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       -- { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
+      { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     }, {
@@ -84,6 +111,7 @@ lua <<EOF
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['pylsp'].setup {
     capabilities = capabilities
