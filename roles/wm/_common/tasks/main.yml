@@ -1,3 +1,13 @@
+- name: gather os specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+    - default.yml
+  tags:
+    - always
+
 - import_tasks: install_xorg.yml
 - import_tasks: install_rofi.yml
 - import_tasks: install_fonts.yml

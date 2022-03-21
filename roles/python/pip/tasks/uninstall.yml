@@ -8,6 +8,6 @@
 - name: Uninstall pip
   package:
     name:
-      - python-pip
+      - "{{ pip }}"
     state: absent
   become: yes

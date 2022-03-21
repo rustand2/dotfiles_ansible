@@ -1,9 +1,11 @@
 - name: Install bluetooth tools
   package:
-    name:
-      - bluez
-      - bluez-tools
-      - bluez-utils
-      - pulseaudio-bluetooth
+    name: "{{ bluez }}"
+    state: present
+  become: yes
+
+- name: Install pulseaudio bluetooth support
+  package:
+    name: "{{ pulseaudio_bluetooth }}"
     state: present
   become: yes

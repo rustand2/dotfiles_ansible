@@ -1,0 +1,3 @@
+dejavu: fonts-dejavu
+font_dir: /usr/share/fonts/truetype/dejavu/
+emoji_font: fonts-noto-color-emoji

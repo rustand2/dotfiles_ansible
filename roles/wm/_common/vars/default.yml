@@ -1,0 +1,3 @@
+dejavu: ttf-dejavu
+font_dir: /usr/share/fonts/TTF/
+emoji_font: noto-fonts-emoji
