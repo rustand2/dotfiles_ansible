@@ -6,9 +6,19 @@
     state: present
   become: yes
 
-- name: Install viu image viewer
+- name: Install viu image viewer from package manager
   package:
     name:
       - viu
     state: present
   become: yes
+  when: ansible_distribution == 'Archlinux'
+
+- name: Install viu image viewer from github
+  get_url:
+    url: https://github.com/atanunq/viu/releases/download/v1.4.0/viu
+    dest: /usr/bin/viu
+    checksum: sha256:a1a80cb18fc06022086ea6b477a6e3c16c7ce4f024ef8f8b300ae60a0fc7ffa9
+    mode: '0755'
+  become: yes
+  when: ansible_os_family == 'Debian'

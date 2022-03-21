@@ -1,0 +1,6 @@
+bluez:
+  - bluez
+  - bluez-utils
+  - bluez-tools
+
+pulseaudio_bluetooth: pulseaudio-bluetooth

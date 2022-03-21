@@ -1,7 +1,7 @@
 - name: Install fonts
   package:
     name:
-      - ttf-dejavu
+      - "{{ dejavu }}"
     state: present
   become: yes
   tags:
@@ -10,7 +10,7 @@
 - name: Install emoji font
   package:
     name:
-      - noto-fonts-emoji
+      - "{{ emoji_font }}"
     state: present
   become: yes
   tags:
@@ -21,6 +21,7 @@
   copy:
     src: etc/fonts/local.conf
     dest: /etc/fonts/local.conf
+  become: yes
   tags:
     - gui
     - emoji

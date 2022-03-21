@@ -1,7 +1,7 @@
 - name: Install pip
   package:
     name:
-      - python-pip
+      - "{{ pip }}"
     state: present
   become: yes
 
