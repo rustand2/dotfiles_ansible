@@ -12,30 +12,12 @@
   become: yes
   when: ansible_os_family == 'Debian'
 
-- name: Install libiw
+- name: Install qtile dependencies
   package:
-    name:
-      - libiw-dev
+    name: "{{ qtile_deps }}"
   become: yes
-  when: ansible_os_family == 'Debian'
-
-- name: Install iwlib
-  pip:
-    name:
-      - iwlib
-  become: yes
-  when: ansible_os_family == 'Debian'
-
-- name: Install iwlib
-  package:
-    name:
-      - iw
-      - python-iwlib
-  become: yes
-  when: ansible_distribution == 'Archlinux'
 
 - name: Install qtile python dependencies
   pip:
-    name:
-      - psutil
+    name: "{{ qtile_python_deps }}"
   become: yes

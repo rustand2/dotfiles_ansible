@@ -1,0 +1,5 @@
+qemu:
+  - qemu-system
+libvirt:
+  - libvirt-daemon-system
+  - virt-manager

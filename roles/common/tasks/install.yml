@@ -50,45 +50,10 @@
   when: ansible_os_family == 'Debian'
 
 - name: Install developer tools
-  block:
-    - name: Install developer tools
-      package:
-        name:
-          - git
-          - htop
-          - openssh
-          - python
-          - ipython
-          - tree
-          - ncdu
-          - fzf
-          - unzip
-          - cmake
-          - pciutils
-          - usbutils
-          - man
-          - inetutils
-        state: present
-      become: yes
-      when: ansible_distribution == 'Archlinux'
-
-    - name: Install developer tools
-      package:
-        name:
-          - git
-          - htop
-          - python3
-          - tree
-          - ncdu
-          - fzf
-          - unzip
-          - cmake
-          - pciutils
-          - usbutils
-          - man
-        state: present
-      become: yes
-      when: ansible_os_family == 'Debian'
+  package:
+    name: "{{ devtools }}"
+    state: present
+  become: yes
 
 - name: Install GUI programs
   package:

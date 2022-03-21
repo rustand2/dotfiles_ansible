@@ -1,0 +1,16 @@
+devtools:
+  - git
+  - htop
+  - openssh
+  - python
+  - ipython
+  - tree
+  - ncdu
+  - fzf
+  - unzip
+  - cmake
+  - pciutils
+  - usbutils
+  - man
+  - inetutils
+

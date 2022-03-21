@@ -1,0 +1,12 @@
+devtools:
+  - git
+  - htop
+  - python3
+  - tree
+  - ncdu
+  - fzf
+  - unzip
+  - cmake
+  - pciutils
+  - usbutils
+  - man

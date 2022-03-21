@@ -1,20 +1,5 @@
 - name: Install virtualization tools
-  block:
-    - name: Install virtualization tools
-      package:
-        name:
-          - qemu
-          - libvirt
-        state: present
-      become: yes
-      when: ansible_distribution == 'Archlinux'
-
-    - name: Install virtualization tools
-      package:
-        name:
-          - qemu-system
-          - libvirt-daemon-system
-          - virt-manager
-        state: present
-      become: yes
-      when: ansible_os_family == 'Debian'
+  package:
+    name: "{{ qemu + libvirt }}"
+    state: present
+  become: yes

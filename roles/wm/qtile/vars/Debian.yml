@@ -1,0 +1,6 @@
+qtile_python_deps:
+  - psutil
+  - iwlib
+
+qtile_deps:
+  - libiw-dev
