@@ -1,0 +1,11 @@
+---
+- name: Enable COLORTERM
+  hosts: all
+
+  tasks:
+    - name: Enable passing of COLORTERM over ssh
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        line: 'AcceptEnv COLORTERM'
+        state: present
+      become: yes

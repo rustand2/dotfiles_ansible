@@ -25,6 +25,12 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "playbook.yml"
   end
 
+  config.ssh.forward_env = ['COLORTERM']
+  config.vm.provision "colorterm", type: "ansible"  do |ansible|
+    ansible.playbook = "plays/vagrant/enable_colorterm.yml"
+  end
+
+
   config.vm.provider "libvirt" do |v|
     v.memory = 8192
     v.cpus = 4
