@@ -7,6 +7,13 @@
   tags:
     - gui
 
+- name: Install Nerd Fonts (symbols)
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DejaVuSansMono.zip
+    dest: "{{ font_dir }}"
+    remote_src: yes
+  become: yes
+
 - name: Install emoji font
   package:
     name:
