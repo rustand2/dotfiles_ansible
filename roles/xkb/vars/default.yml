@@ -1,0 +1,2 @@
+xorg_conf: /etc/X11/xorg.conf.d/
+xkb_symbols: /usr/share/X11/xkb/symbols/pc

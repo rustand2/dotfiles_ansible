@@ -10,3 +10,5 @@ devtools:
   - pciutils
   - usbutils
   - man
+
+sudoers_file: /etc/sudoers

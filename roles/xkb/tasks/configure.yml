@@ -1,18 +1,18 @@
 - name: Ensure xorg.conf.d exists
   file:
-    path: /etc/X11/xorg.conf.d/
+    path: "{{ xorg_conf_d }}"
     state: directory
   become: yes
 
 - name: Install systemwide keymap settings
   copy:
     src: etc/X11/xorg.conf.d/00-keyboard.conf
-    dest: /etc/X11/xorg.conf.d/00-keyboard.conf
+    dest: "{{ xorg_conf_d }}/00-keybord.conf"
   become: yes
 
 - name: Enable hyper key globally
   copy:
     src: usr/share/X11/xkb/symbols/pc
-    dest: /usr/share/X11/xkb/symbols/pc
+    dest: "{{ xkb_symbols }}"
   become: yes
 

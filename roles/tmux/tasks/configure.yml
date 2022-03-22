@@ -7,7 +7,7 @@
 - name: Preserve TMUX variable for sudo
   copy:
     src: etc/sudoers.d/tmux
-    dest: /etc/sudoers.d/tmux
+    dest: "{{ sudoers_d }}/tmux"
   become: yes
 
 - name: Check if TPM is installed

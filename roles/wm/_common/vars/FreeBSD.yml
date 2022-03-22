@@ -1,0 +1,6 @@
+dejavu: dejavu
+font_dir: /usr/local/share/fonts/TTF/
+emoji_font: noto-emoji
+fontconfig: /usr/local/etc/fonts/local.conf
+xorg:
+  - xorg
