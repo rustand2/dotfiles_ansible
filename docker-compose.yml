@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  arch:
+    build:
+      dockerfile: docker/arch/Dockerfile
+      context: .
+  debian:
+    build:
+      dockerfile: docker/debian/Dockerfile
+      context: .
+  debian-testing:
+    build:
+      dockerfile: docker/debian/Dockerfile
+      context: .
+  debian-unstable:
+    build:
+      dockerfile: docker/debian/Dockerfile
+      context: .
+  ubuntu:
+    build:
+      dockerfile: docker/debian/Dockerfile
+      context: .

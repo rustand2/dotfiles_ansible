@@ -1,0 +1,18 @@
+---
+- name: main
+  hosts: all
+  vars_files:
+    - ../vars.yml
+  module_defaults:
+    copy:
+      backup: yes
+    template:
+      backup: yes
+    lineinfile:
+      backup: yes
+  roles:
+    - common
+    - shell/all
+    - git
+    - neovim
+    - tmux

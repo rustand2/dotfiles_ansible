@@ -7,6 +7,8 @@
   command: hwclock --systohc
   become: yes
   when: ansible_distribution == 'Archlinux'
+  tags:
+    - hardware
 
 - name: Create 'wheel' group
   group:
