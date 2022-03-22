@@ -4,3 +4,4 @@
     groups: libvirt
     append: yes
   become: yes
+  when: ansible_distribution != 'FreeBSD'

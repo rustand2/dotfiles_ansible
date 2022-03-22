@@ -1,0 +1,2 @@
+# TODO automagically detect version
+pip: py38-pip

@@ -1,9 +1,7 @@
 devtools:
   - git
   - htop
-  - openssh
   - python
-  - ipython
   - tree
   - ncdu
   - fzf
@@ -11,7 +9,5 @@ devtools:
   - cmake
   - pciutils
   - usbutils
-  - man
-  - inetutils
 
-sudoers_file: /etc/sudoers
+sudoers_file: /usr/local/etc/sudoers

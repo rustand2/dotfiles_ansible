@@ -37,7 +37,6 @@
       - sudo
     state: present
   become: yes
-  when: ansible_distribution == 'FreeBSD'
   tags:
     - sudo
 

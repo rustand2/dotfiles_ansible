@@ -16,8 +16,10 @@
   package:
     name: "{{ qtile_deps }}"
   become: yes
+  when: qtile_deps
 
 - name: Install qtile python dependencies
   pip:
     name: "{{ qtile_python_deps }}"
   become: yes
+  when: qtile_python_deps

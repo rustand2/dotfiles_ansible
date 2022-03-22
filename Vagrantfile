@@ -18,16 +18,24 @@ Vagrant.configure("2") do |config|
   config.vm.define "debian-testing" do |debian_testing|
     debian_testing.vm.box = "debian/testing64"
   end
+  config.vm.define "freebsd" do |freebsd|
+    freebsd.vm.box = "freebsd/FreeBSD-14.0-CURRENT"
+  end
 
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbook.yml"
-  end
+  # Bootstrap python on FreeBSD
+  config.vm.provision "bootstrap_python", type: "shell",
+    inline: "test -e /usr/sbin/pkg && pkg install -y python3 || true"
 
+  # Enable truecolor over ssh
   config.ssh.forward_env = ['COLORTERM']
   config.vm.provision "colorterm", type: "ansible"  do |ansible|
     ansible.playbook = "plays/vagrant/enable_colorterm.yml"
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
   end
 
 

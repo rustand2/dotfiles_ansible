@@ -41,7 +41,8 @@
   become: yes
 
 - name: Set shell to zsh
-  command: usermod --shell /bin/zsh {{ username }}
+  user:
+    name: "{{ username }}"
+    shell: /bin/zsh
   become: yes
-  changed_when: false
   when: shell == 'zsh'

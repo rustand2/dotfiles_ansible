@@ -1,6 +1,5 @@
 - name: Install pass
   package:
-    name:
-      - pass
+    name: "{{ pass }}"
   become: yes
 

@@ -2,7 +2,6 @@
   package:
     name:
       - neomutt
-      - offlineimap
     state: present
   become: yes
 
@@ -21,4 +20,4 @@
     checksum: sha256:a1a80cb18fc06022086ea6b477a6e3c16c7ce4f024ef8f8b300ae60a0fc7ffa9
     mode: '0755'
   become: yes
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' or ansible_distribution == 'FreeBSD'

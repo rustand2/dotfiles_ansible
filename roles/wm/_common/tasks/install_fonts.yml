@@ -27,7 +27,7 @@
 - name: Configure fonts
   copy:
     src: etc/fonts/local.conf
-    dest: /etc/fonts/local.conf
+    dest: "{{ fontconfig }}"
   become: yes
   tags:
     - gui
