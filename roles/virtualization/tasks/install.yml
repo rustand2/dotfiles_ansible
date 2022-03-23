@@ -1,5 +1,17 @@
-- name: Install virtualization tools
+- name: Install libvirt
   package:
     name: "{{ qemu + libvirt }}"
+    state: present
+  become: yes
+
+- name: Install vagrant
+  package:
+    name: vagrant
+    state: present
+  become: yes
+
+- name: Install ansible
+  package:
+    name: ansible
     state: present
   become: yes
