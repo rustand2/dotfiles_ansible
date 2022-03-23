@@ -10,13 +10,13 @@ services:
       context: .
   debian-testing:
     build:
-      dockerfile: docker/debian/Dockerfile
+      dockerfile: docker/debian-testing/Dockerfile
       context: .
   debian-unstable:
     build:
-      dockerfile: docker/debian/Dockerfile
+      dockerfile: docker/debian-unstable/Dockerfile
       context: .
   ubuntu:
     build:
-      dockerfile: docker/debian/Dockerfile
+      dockerfile: docker/ubuntu/Dockerfile
       context: .
