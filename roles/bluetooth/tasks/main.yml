@@ -16,6 +16,7 @@
       - bluetooth.install
   tags:
     - bluetooth
+    - hardware
 
 - import_tasks: uninstall.yml
   tags:

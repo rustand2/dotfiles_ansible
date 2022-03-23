@@ -16,6 +16,7 @@
       - wifi.install
   tags:
     - wifi
+    - hardware
 
 - import_tasks: uninstall.yml
   tags:
