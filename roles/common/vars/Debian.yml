@@ -7,8 +7,10 @@ devtools:
   - fzf
   - unzip
   - cmake
+  - man
+
+hwtools:
   - pciutils
   - usbutils
-  - man
 
 sudoers_file: /etc/sudoers
