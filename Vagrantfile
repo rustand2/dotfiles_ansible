@@ -24,9 +24,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
-  # Bootstrap python on FreeBSD
-  config.vm.provision "bootstrap_python", type: "shell",
-    inline: "test -e /usr/sbin/pkg && pkg install -y python3 || true"
+  # Bootstrap python on BSD
+  config.vm.provision "bootstrap_python", type: "ansible"  do |ansible|
+    ansible.playbook = "plays/vagrant/bootstrap_python.yml"
+  end
 
   # Enable truecolor over ssh
   config.ssh.forward_env = ['COLORTERM']

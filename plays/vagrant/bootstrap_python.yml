@@ -3,13 +3,6 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Check for pkg
-      raw: test -e /usr/sbin/pkg
-      changed_when: false
-      failed_when: false
-      register: check_pkg
-      become: yes
-
     - name: Check for python
       raw: test -e /usr/bin/python
       changed_when: false
@@ -17,7 +10,30 @@
       register: check_python
       become: yes
 
-    - name: Bootstrap python for FreeBSD
-      raw: pkg install -y python
-      when: check_pkg.rc == 0
-      become: yes
+    - block:
+      - name: Check for pkg
+        raw: test -e /usr/sbin/pkg
+        changed_when: false
+        failed_when: false
+        register: check_pkg
+        become: yes
+
+      - name: Bootstrap python for FreeBSD
+        raw: pkg install -y python
+        when: check_pkg.rc == 0
+        become: yes
+
+      - name: Check for pkg_add
+        raw: test -e /usr/sbin/pkg_add
+        changed_when: false
+        failed_when: false
+        register: check_pkg_add
+        become: yes
+        when: check_pkg.rc != 0
+
+      - name: Bootstrap python for OpenBSD
+        raw: pkg_add python
+        when: check_pkg.rc != 0 and check_pkg_add.rc == 0
+        become: yes
+
+      when: check_python.rc != 0
