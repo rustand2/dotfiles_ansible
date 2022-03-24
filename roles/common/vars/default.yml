@@ -9,9 +9,11 @@ devtools:
   - fzf
   - unzip
   - cmake
-  - pciutils
-  - usbutils
   - man
   - inetutils
+
+hwtools:
+  - pciutils
+  - usbutils
 
 sudoers_file: /etc/sudoers

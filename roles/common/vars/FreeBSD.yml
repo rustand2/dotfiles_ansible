@@ -7,6 +7,8 @@ devtools:
   - fzf
   - unzip
   - cmake
+
+hwtools:
   - pciutils
   - usbutils
 
