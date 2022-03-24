@@ -1,5 +1,5 @@
 ---
-- name: work
+- name: main
   hosts: all
   vars_files:
     - vars.yml
