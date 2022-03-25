@@ -3,7 +3,7 @@ FROM ubuntu:21.10
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-  apt-get install python3-pip -y && \
+  apt-get install -y python3-pip software-properties-common && \
   pip3 install --upgrade pip && \
   pip3 install ansible
 
