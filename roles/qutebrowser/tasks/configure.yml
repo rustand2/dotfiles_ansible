@@ -4,3 +4,17 @@
   become_user: "{{ username }}"
   when: ansible_distribution == 'Archlinux'
     #TODO fix this for debian as well
+
+- name: Ensure qutebrowser config dir exists
+  file:
+    dest: /home/{{ username }}/.config/qutebrowser/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure qutebrowser
+  copy:
+    src: HOME/.config/qutebrowser/config.py
+    dest: /home/{{ username }}/.config/qutebrowser/config.py
+  become: yes
+  become_user: "{{ username }}"
