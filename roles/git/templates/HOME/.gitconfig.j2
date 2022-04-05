@@ -9,3 +9,11 @@
 	excludesfile = /home/{{ username }}/.gitignore
 [commit]
 	gpgsign = true
+[diff]
+	# Detect copies as well as renames
+	renames = copies
+[push]
+	# Push only current branch
+	default = current
+[pull]
+	rebase = true
