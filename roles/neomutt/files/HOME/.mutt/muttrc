@@ -3,6 +3,9 @@ source colors
 source keybinds
 source powerline
 
+# Sign messages with pgp
+set pgp_autosign=yes
+
 # Sort by threads
 set sort = threads
 # Sort threads by last date recieved - newest first
