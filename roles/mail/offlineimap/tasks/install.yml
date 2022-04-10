@@ -1,0 +1,6 @@
+- name: Install offlineimap
+  package:
+    name:
+      - offlineimap
+    state: present
+  become: yes

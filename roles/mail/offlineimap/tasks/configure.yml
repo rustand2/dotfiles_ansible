@@ -1,0 +1,22 @@
+- name: Create .offlineimap directory
+  file:
+    path: /home/{{ username }}/.offlineimap/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Gmail auth script
+  copy:
+    src: HOME/.offlineimap/auth.py
+    dest: /home/{{ username }}/.offlineimap/auth.py
+    mode: '0700'
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Configure offlineimap
+  template:
+    src: HOME/.offlineimaprc.j2
+    dest: /home/{{ username }}/.offlineimaprc
+    mode: '0600'
+  become: yes
+  become_user: "{{ username }}"

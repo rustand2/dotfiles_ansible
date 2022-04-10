@@ -1,0 +1,6 @@
+- name: Uninstall offlineimap
+  package:
+    name:
+      - offlineimap
+    state: absent
+  become: yes
