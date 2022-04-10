@@ -16,7 +16,8 @@
     - git
     - neovim
     - pass
-    - neomutt
+    - mail/neomutt
+    - mail/offlineimap
     - tmux
     - autorandr
     - wm/qtile

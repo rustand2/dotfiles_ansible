@@ -1,10 +1,20 @@
-source gmail
 source colors
 source keybinds
 source powerline
 
 # Sign messages with pgp
 set pgp_autosign=yes
+
+# Use offlineimap
+set mbox_type=Maildir
+set folder = "~/mail/"
+set spoolfile = "~/mail/INBOX"
+mailboxes +INBOX "+All Mail" "+Sent Mail" +Drafts +Starred +Important +Spam +Trash
+
+# Gmail automatically saves sent email to [Gmail]/Sent
+unset record
+# Specify where to save and/or look for postponed messages.
+set postponed = +Drafts
 
 # Sort by threads
 set sort = threads
@@ -26,7 +36,7 @@ set editor = "nvim +':set textwidth=0'"
 
 
 set collapse_all = yes
-set uncollapse_new = no # (default is yes)
+set uncollapse_new = yes
 
 
 
