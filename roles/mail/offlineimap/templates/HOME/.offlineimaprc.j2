@@ -34,12 +34,19 @@ folderfilter = lambda folder: folder not in ['Trash', 'Sent Mail']
 
 [Repository {{ email.account_name }}-remote]
 type = IMAP
+remoteuser = {{ email.address }}
 {% if email.provider == "gmail" %}
 remotehost = imap.gmail.com
-{% endif %}
-remoteuser = {{ email.address }}
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_app_password("{{ email.address }}")
+{% elif email.provider == "outlook" %}
+remotehost = outlook.office365.com
+auth_mechanisms = XOAUTH2
+oauth2_request_url = https://accounts.google.com/o/oauth2/token
+oauth2_client_id_eval = get_client_id("{{ email.address }}")
+oauth2_client_secret_eval = get_client_secret("{{ email.address }}")
+oauth2_refresh_token_eval = get_refresh_token("{{ email.address }}")
+{% endif %}
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 {% if email.provider == "gmail" %}
 nametrans= lambda f: f.replace("[Gmail]/","")
