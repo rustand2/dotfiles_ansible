@@ -1,15 +1,15 @@
 [general]
 # List of accounts to be synced, separated by a comma.
-accounts = gmail
+accounts = {{ email.account_name }}
 pythonfile = ~/.offlineimap/auth.py
 # Controls how many accounts may be synced simultaneously
 maxsyncaccounts = 1
 
-[Account gmail]
+[Account {{ email.account_name }}]
 # Identifier for the local repository; e.g. the maildir to be synced via IMAP.
-localrepository = gmail-local
+localrepository = {{ email.account_name }}-local
 # Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
-remoterepository = gmail-remote
+remoterepository = {{ email.account_name }}-remote
 # Minutes between syncs
 autorefresh = 0.5
 # Quick-syncs do not update if the only changes were to IMAP flags.
@@ -18,23 +18,27 @@ autorefresh = 0.5
 # refresh, regardless of type.
 quick = 10
 
-[Repository gmail-local]
+[Repository {{ email.account_name }}-local]
 # OfflineIMAP supports Maildir, GmailMaildir, and IMAP for local repositories.
 type = Maildir
 # Where should the mail be placed?
-localfolders = ~/mail/gmail
+localfolders = ~/mail/{{ email.account_name }}
+{% if email.provider == "gmail" %}
 #nametrans= lambda f: '[Gmail]/' + f if f in ['Utkast', 'Stjernemerket', 'Viktig', 'S&APg-ppelpost', 'Papirkurv', 'All e-post', 'Sendt e-post'] else f
 nametrans= lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent'] else f
+{% endif %}
 folderfilter = lambda folder: folder not in ['Trash', 'Sent Mail']
 
-[Repository gmail-remote]
+[Repository {{ email.account_name }}-remote]
 type = IMAP
-remotehost = imap.gmail.com
-remoteuser = {{ email }}
+remotehost = {{ email.imap_host }}
+remoteuser = {{ email.address }}
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-remotepasseval = get_app_password("{{ email }}")
+remotepasseval = get_app_password("{{ email.address }}")
 
+{% if email.provider == "gmail" %}
 nametrans= lambda f: f.replace("[Gmail]/","")
+{% endif %}
 
 # Instead of closing the connection once a sync is complete, offlineimap will
 # send empty data to the server to hold the connection open. A value of 60
