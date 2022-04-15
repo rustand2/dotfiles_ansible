@@ -7,8 +7,8 @@ set pgp_autosign=yes
 
 # Use offlineimap
 set mbox_type=Maildir
-set folder = "~/mail/"
-set spoolfile = "~/mail/INBOX"
+set folder = "~/mail/gmail/"
+set spoolfile = "~/mail/gmail/INBOX"
 mailboxes +INBOX "+All Mail" "+Sent Mail" +Drafts +Starred +Important +Spam +Trash
 
 # Gmail automatically saves sent email to [Gmail]/Sent
