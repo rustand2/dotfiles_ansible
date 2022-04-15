@@ -21,9 +21,7 @@ There are also a few docker targets available in the supplied `docker-compose.ym
 ## Post installation
 
 ### Email configuration
-Create pass entries for mutt called `mutt/EMAIL_ADDRESS/client_id`, `mutt/EMAIL_ADDRESS/client_secret` and `mutt/EMAIL_ADDRESS/refresh_token`, and insert the client_id, client_secret and refresh_token for your Gmail account.
-
-The first time you open mutt you might need to log in to your Gmail account through the browser.
+Create a Gmail app password and insert it into pass in an entry called `mutt/<EMAIL ADDRESS>/app_password`, optionally in a subdirectory if needed.
 
 
 ## Advanced usage
