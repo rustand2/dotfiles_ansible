@@ -1,6 +1,9 @@
 username: <YOUR_USERNAME>
 password: <YOUR_PASSWORD>
 fullname: "<YOUR_FULL_NAME>"
-email: <YOUR_EMAIL_ADDRESS>
+email:
+    account_name: <ACCOUNT_NAME> # Used in config files and as mailbox name in mutt
+    provider: <EMAIL_PROVIDER> # Currently supported: gmail
+    address: <YOUR_EMAIL_ADDRESS>
 pass_gpg_key_id: <YOUR_GPG_KEY_ID>
 shell: <DEFAULT_SHELL>

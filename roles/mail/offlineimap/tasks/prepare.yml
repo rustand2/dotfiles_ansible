@@ -1,0 +1,8 @@
+- assert:
+    that:
+      - email.provider == "gmail"
+
+- name: Set gmail specific variables
+  set_fact:
+    email: "{{ email | combine({'imap_host': 'imap.gmail.com'}) }}"
+  when: email.provider == "gmail"

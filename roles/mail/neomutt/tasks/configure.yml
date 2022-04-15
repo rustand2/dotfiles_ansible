@@ -17,6 +17,13 @@
   become: yes
   become_user: "{{ username }}"
 
+- name: Configure email accounts in mutt
+  template:
+    src: HOME/.mutt/accounts.j2
+    dest: /home/{{ username }}/.mutt/accounts
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Add mailcap
   copy:
     src: HOME/.mutt/mailcap

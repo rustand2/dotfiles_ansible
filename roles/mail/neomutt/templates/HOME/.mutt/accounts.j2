@@ -1,0 +1,17 @@
+# Use offlineimap
+set mbox_type=Maildir
+set folder = "~/mail/{{ email.account_name }}/"
+set spoolfile = "~/mail/{{ email.account_name }}/INBOX"
+
+{% if email.provider == "gmail" %}
+mailboxes +INBOX "+All Mail" "+Sent Mail" +Drafts +Starred +Important +Spam +Trash
+{% else %}
+mailboxes +INBOX
+{% endif %}
+
+{% if email.provider == "gmail" %}
+# Gmail automatically saves sent email to [Gmail]/Sent
+unset record
+{% endif %}
+# Specify where to save and/or look for postponed messages.
+set postponed = +Drafts
