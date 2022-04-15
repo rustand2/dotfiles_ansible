@@ -32,11 +32,7 @@ type = IMAP
 remotehost = imap.gmail.com
 remoteuser = {{ email }}
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-auth_mechanisms = XOAUTH2
-oauth2_request_url = https://accounts.google.com/o/oauth2/token
-oauth2_client_id_eval = get_client_id("{{ email }}")
-oauth2_client_secret_eval = get_client_secret("{{ email }}")
-oauth2_refresh_token_eval = get_refresh_token("{{ email }}")
+remotepasseval = get_app_password("{{ email }}")
 
 nametrans= lambda f: f.replace("[Gmail]/","")
 

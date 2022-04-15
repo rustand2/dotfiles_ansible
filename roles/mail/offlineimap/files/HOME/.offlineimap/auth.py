@@ -9,22 +9,8 @@ def get_account_path(account):
     filepath = "/".join(sub.stdout.decode("utf-8").split("/")[4:-1])
     return filepath
 
-def get_client_id(account):
+def get_app_password(account):
     path = get_account_path(account)
-    args = ["/usr/bin/pass", "show", f"{path}/client_id"]
-    sub = subprocess.run(args, check=True, capture_output=True)
-    return sub.stdout.decode("utf-8")
-
-
-def get_client_secret(account):
-    path = get_account_path(account)
-    args = ["/usr/bin/pass", "show", f"{path}/client_secret"]
-    sub = subprocess.run(args, check=True, capture_output=True)
-    return sub.stdout.decode("utf-8")
-
-
-def get_refresh_token(account):
-    path = get_account_path(account)
-    args = ["/usr/bin/pass", "show", f"{path}/refresh_token"]
+    args = ["/usr/bin/pass", "show", f"{path}/app_password"]
     sub = subprocess.run(args, check=True, capture_output=True)
     return sub.stdout.decode("utf-8")
