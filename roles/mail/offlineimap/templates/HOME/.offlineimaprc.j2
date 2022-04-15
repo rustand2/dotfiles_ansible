@@ -1,9 +1,12 @@
 [general]
 # List of accounts to be synced, separated by a comma.
-accounts = {{ email.account_name }}
+accounts = {% for email in email_accounts %}{{ email.account_name }}{% if not loop.last %}, {% endif %}{% endfor %}
+
 pythonfile = ~/.offlineimap/auth.py
 # Controls how many accounts may be synced simultaneously
 maxsyncaccounts = 1
+
+{% for email in email_accounts %}
 
 [Account {{ email.account_name }}]
 # Identifier for the local repository; e.g. the maildir to be synced via IMAP.
@@ -31,7 +34,9 @@ folderfilter = lambda folder: folder not in ['Trash', 'Sent Mail']
 
 [Repository {{ email.account_name }}-remote]
 type = IMAP
-remotehost = {{ email.imap_host }}
+{% if email.provider == "gmail" %}
+remotehost = imap.gmail.com
+{% endif %}
 remoteuser = {{ email.address }}
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_app_password("{{ email.address }}")
@@ -51,3 +56,5 @@ keepalive = 60
 # connection open, set this to true. This setting has no effect if autorefresh
 # is not set.
 holdconnectionopen = yes
+
+{% endfor %}
