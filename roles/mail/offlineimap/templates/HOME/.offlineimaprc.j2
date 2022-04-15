@@ -22,7 +22,7 @@ quick = 10
 # OfflineIMAP supports Maildir, GmailMaildir, and IMAP for local repositories.
 type = Maildir
 # Where should the mail be placed?
-localfolders = ~/mail
+localfolders = ~/mail/gmail
 #nametrans= lambda f: '[Gmail]/' + f if f in ['Utkast', 'Stjernemerket', 'Viktig', 'S&APg-ppelpost', 'Papirkurv', 'All e-post', 'Sendt e-post'] else f
 nametrans= lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent'] else f
 folderfilter = lambda folder: folder not in ['Trash', 'Sent Mail']
