@@ -3,3 +3,8 @@
     name: "{{ pass }}"
   become: yes
 
+- name: Install pass-otp
+  package:
+    name: pass-otp
+  become: yes
+
