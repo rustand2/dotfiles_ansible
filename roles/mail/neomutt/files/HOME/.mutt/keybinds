@@ -32,6 +32,7 @@ macro index,pager gd "<change-folder>=Drafts<enter>"      "open drafts"
 macro index,pager gs "<change-folder>=Sent<enter>"        "open sent"
 macro index,pager gt "<change-folder>$trash<enter>"       "open trash"
 macro index,pager gf "<change-folder>?"                   "open mailbox..."
+macro index,pager ga "<change-folder>?<goto-parent>"      "change account"
 
 # Actions
 # ----------------------------------------------------

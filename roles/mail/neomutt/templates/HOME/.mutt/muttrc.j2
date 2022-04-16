@@ -1,7 +1,11 @@
-source accounts
+source accounts/{{ email_accounts[0].account_name }}
 source colors
 source keybinds
 source powerline
+
+{% for email in email_accounts %}
+folder-hook {{ email.account_name }} 'source ~/.mutt/accounts/{{ email.account_name }}'
+{% endfor %}
 
 # Sign messages with pgp
 set pgp_autosign=yes

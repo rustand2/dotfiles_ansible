@@ -1,15 +1,16 @@
 # Use offlineimap
 set mbox_type=Maildir
-set folder = "~/mail/{{ email_accounts[0].account_name }}/"
-set spoolfile = "~/mail/{{ email_accounts[0].account_name }}/INBOX"
+set folder = "~/mail/{{ email.account_name }}/"
+set spoolfile = "~/mail/{{ email.account_name }}/INBOX"
 
-{% if email_accounts[0].provider == "gmail" %}
+unmailboxes *
+{% if email.provider == "gmail" %}
 mailboxes +INBOX "+All Mail" "+Sent Mail" +Drafts +Starred +Important +Spam +Trash
 {% else %}
 mailboxes +INBOX
 {% endif %}
 
-{% if email_accounts[0].provider == "gmail" %}
+{% if email.provider == "gmail" %}
 # Gmail automatically saves sent email to [Gmail]/Sent
 unset record
 {% endif %}
