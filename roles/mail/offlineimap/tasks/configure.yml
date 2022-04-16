@@ -23,9 +23,10 @@
 
 - name: Enable offlineimap service
   systemd:
-    name: offlineimap
+    name: offlineimap@{{ item.account_name }}
     scope: user
     enabled: yes
     state: restarted
   become: yes
   become_user: "{{ username }}"
+  loop: "{{ email_accounts }}"
