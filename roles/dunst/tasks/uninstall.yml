@@ -1,0 +1,6 @@
+- name: Uninstall dunst
+  package:
+    name:
+      - dunst
+    state: absent
+  become: yes

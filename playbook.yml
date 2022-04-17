@@ -16,6 +16,7 @@
     - git
     - neovim
     - pass
+    - dunst
     - mail/neomutt
     - mail/offlineimap
     - tmux

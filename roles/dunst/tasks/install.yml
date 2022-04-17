@@ -1,0 +1,5 @@
+- name: Install dunst
+  package:
+    name: dunst
+    state: present
+  become: yes

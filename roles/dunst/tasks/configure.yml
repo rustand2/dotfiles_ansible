@@ -1,0 +1,8 @@
+- name: Enable notification service
+  systemd:
+    name: dunst
+    scope: user
+    enabled: yes
+    state: restarted
+  become: yes
+  become_user: "{{ username }}"
