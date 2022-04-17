@@ -4,3 +4,10 @@
       - offlineimap
     state: present
   become: yes
+
+- name: Install notmuch
+  package:
+    name:
+      - notmuch
+    state: present
+  become: yes
