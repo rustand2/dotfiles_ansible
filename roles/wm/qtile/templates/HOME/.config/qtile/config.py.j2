@@ -256,6 +256,7 @@ keys = [
     Key([hyper], "Right", lazy.next_screen(), desc="Next monitor"),
     Key([hyper], "Down", lazy.function(next_free_nonempty_group), desc="Next free group"),
     Key([hyper], "Up", lazy.function(prev_free_nonempty_group), desc="Previous free group"),
+    Key([hyper], "r", lazy.spawn("rofimoji -a clipboard"), desc="Spawn a command using a prompt widget"),
 ]
 
 groups = [
