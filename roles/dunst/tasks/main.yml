@@ -1,0 +1,19 @@
+---
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - dunst.install
+  - import_tasks: configure.yml
+    tags:
+      - configure
+      - dunst.configure
+  tags:
+    - dunst
+    - notifications
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - dunst.uninstall
