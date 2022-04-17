@@ -8,7 +8,12 @@
   tags:
     - always
 
-- import_tasks: install_xorg.yml
-- import_tasks: install_rofi.yml
-- import_tasks: install_fonts.yml
+- block:
+  - import_tasks: install_xorg.yml
+  - import_tasks: install_rofi.yml
+  - import_tasks: install_fonts.yml
+  tags:
+    - wm
+    - qtile
+    - i3
 
