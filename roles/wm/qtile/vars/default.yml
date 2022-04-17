@@ -4,3 +4,4 @@ qtile_python_deps:
 
 qtile_deps:
   - iw
+  - wireless_tools
