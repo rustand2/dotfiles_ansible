@@ -1,0 +1,11 @@
+- name: Install screenlock service
+  copy:
+    src: etc/systemd/system/i3lock-after-sleep@.service
+    dest: /etc/systemd/system/i3lock-after-sleep@.service
+  become: yes
+
+- name: Enable screenlock service
+  systemd:
+    name: i3lock-after-sleep@{{ username }}
+    enabled: yes
+  become: yes
