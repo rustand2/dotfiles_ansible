@@ -381,6 +381,16 @@ for s in range(5):
                 widget.Sep(),
                 widget.CheckUpdates(),
                 widget.Sep(),
+{% if "mail/offlineimap" in role_names %}
+                widget.Maildir(
+                    maildir_path = "~/mail/{{ email_accounts[0].account_name }}",
+                    update_interval = 10,
+                    hide_when_empty = True,
+                    sub_folders = [{"label":"Inbox","path":"INBOX"}],
+                    foreground = "#ffffff"
+                ),
+{% endif %}
+                widget.Sep(),
                 widget.TextBox("Vol:"),
                 widget.PulseVolume(),
                 widget.Sep(),
