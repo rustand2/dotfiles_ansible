@@ -13,6 +13,8 @@
     dest: "{{ font_dir }}"
     remote_src: yes
   become: yes
+  tags:
+    - gui
 
 - name: Install emoji font
   package:
