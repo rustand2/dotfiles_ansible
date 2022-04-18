@@ -46,3 +46,11 @@
     dest: /home/{{ username }}/.mutt/mailcap
   become: yes
   become_user: "{{ username }}"
+
+- name: Add account switching script
+  copy:
+    src: HOME/.mutt/switchaccount.sh
+    dest: /home/{{ username }}/.mutt/switchaccount.sh
+    mode: '0700'
+  become: yes
+  become_user: "{{ username }}"
