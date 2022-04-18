@@ -19,6 +19,7 @@
     - dunst
     - mail/neomutt
     - mail/offlineimap
+    - mail/msmtp
     - tmux
     - autorandr
     - wm/qtile

@@ -19,3 +19,6 @@ unset record
 {% endif %}
 # Specify where to save and/or look for postponed messages.
 set postponed = +Drafts
+
+# Use msmtp to send mail
+set sendmail="/usr/bin/msmtp -a {{ email.account_name }}"

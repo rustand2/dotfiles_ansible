@@ -1,0 +1,6 @@
+- name: Install msmtp
+  package:
+    name:
+      - msmtp
+    state: present
+  become: yes
