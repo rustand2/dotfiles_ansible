@@ -4,7 +4,10 @@ cmdignore=(htop tmux top vim nvim nano iotop nethogs alsamixer ptipython man les
 # end and compare timer, notify-send if needed
 function notifyosd-precmd() {
 	retval=$?
+    cmd_window_focused="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
     if [[ ${cmdignore[(r)$cmd_basename]} == $cmd_basename ]]; then
+        return
+    elif [[ "$cmd_window_focused" == "$cmd_window_start" ]]; then
         return
     else
         if [ ! -z "$cmd" ]; then
@@ -37,6 +40,7 @@ function notifyosd-preexec() {
     cmd=$1
     cmd_basename=${${cmd:s/sudo //}[(ws: :)1]}
     cmd_start=`date +%s`
+    cmd_window_start="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
 }
 
 # make sure this plays nicely with any existing preexec
