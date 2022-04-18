@@ -1,7 +1,17 @@
+{% if "mail/offlineimap" in role_names %}
 # Use offlineimap
 set mbox_type=Maildir
 set folder = "~/mail/{{ email.account_name }}/"
 set spoolfile = "~/mail/{{ email.account_name }}/INBOX"
+{% elif email.provider == "outlook" %}
+set folder = imaps://{{ email.address }}@outlook.office365.com:993
+set spoolfile = imaps://{{ email.address }}@outlook.office365.com:993/INBOX
+set imap_pass = `pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/refresh_token`
+{% elif email.provider == "gmail" %}
+set folder = imaps://{{ email.address }}@imap.gmail.com:993
+set spoolfile = imaps://{{ email.address }}@imap.gmail.com:993/INBOX
+set imap_pass = `pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/app_password`
+{% endif %}
 
 set from = {{ email.address }}
 set realname = "{{ fullname }}"
