@@ -20,5 +20,13 @@ unset record
 # Specify where to save and/or look for postponed messages.
 set postponed = +Drafts
 
+{% if "mail/msmtp" in role_names %}
 # Use msmtp to send mail
 set sendmail="/usr/bin/msmtp -a {{ email.account_name }}"
+{% elif email.provider == "outlook" %}
+set smtp_url = smtp://{{ email.address }}@smtp.office365.com:587
+set smtp_pass = `pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/refresh_token`
+{% elif email.provider == "gmail" %}
+set smtp_url = smtp://{{ email.address }}@smtp.gmail.com:587
+set smtp_pass = `pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/app_password`
+{% endif %}
