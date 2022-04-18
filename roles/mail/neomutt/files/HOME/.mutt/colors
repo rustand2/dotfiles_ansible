@@ -4,7 +4,7 @@ color normal default default
 # basic colors ---------------------------------------------------------
 color error         red             default
 #color tilde         black           default
-color message       cyan            default
+color message       default         default
 color markers       red             white
 color attachment    white           default
 color search        brightmagenta   default
@@ -26,7 +26,7 @@ mono  error         bold
 #color index         brightred       default         ~=                         # duplicate messages
 #color index         brightgreen     default         "~A!~N!~T!~p!~Q!~F!~D!~P"  # the rest
 #color index         J_base          default         "~A~N!~T!~p!~Q!~F!~D"      # the rest, new
-color index         red             default         "~A"                        # all messages
+#color index         red             default         "~A"                        # all messages
 color index         brightred       default         "~E"                        # expired messages
 color index         blue            default         "~N"                        # new messages
 color index         blue            default         "~O"                        # old messages
@@ -36,7 +36,7 @@ color index         blue            default         "~U"                        
 color index         blue            default         "~U~$"                      # unread, unreferenced messages
 color index         brightyellow    default         "~v"                        # messages part of a collapsed thread
 color index         brightyellow    default         "~P"                        # messages from me
-color index         cyan            default         "~p!~F"                     # messages to me
+color index         default         default         "~p!~F"                     # messages to me
 color index         cyan            default         "~N~p!~F"                   # new messages to me
 color index         cyan            default         "~U~p!~F"                   # unread messages to me
 color index         default         default         "~R~p!~F"                   # messages to me
