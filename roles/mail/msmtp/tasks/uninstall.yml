@@ -1,0 +1,6 @@
+- name: Uninstall msmtp
+  package:
+    name:
+      - msmtp
+    state: absent
+  become: yes

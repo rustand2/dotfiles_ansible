@@ -1,0 +1,25 @@
+# Set default values for all following accounts.
+defaults
+auth           on
+tls            on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+logfile        ~/.msmtp.log
+
+{% for email in email_accounts %}
+
+account        {{ email.account_name }}
+from           {{ email.address }}
+user           {{ email.address }}
+port           587
+{% if email.provider == "gmail" %}
+host           smtp.gmail.com
+passwordeval   "pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/app_password"
+{% elif email.provider == "outlook" %}
+auth           xoauth2
+host           smtp.office365.com
+passwordeval   "pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/refresh_token"
+
+{% endfor %}
+
+# Set a default account
+account default : {{ email_accounts[0].account_name }}
