@@ -1,3 +1,10 @@
+- name: Install i3lock
+  package:
+    name:
+      - i3lock
+    state: present
+  become: yes
+
 - name: Install screenlock service
   copy:
     src: etc/systemd/system/i3lock-after-sleep@.service
