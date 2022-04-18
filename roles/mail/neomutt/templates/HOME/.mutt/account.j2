@@ -3,6 +3,9 @@ set mbox_type=Maildir
 set folder = "~/mail/{{ email.account_name }}/"
 set spoolfile = "~/mail/{{ email.account_name }}/INBOX"
 
+set from = {{ email.address }}
+set realname = "{{ fullname }}"
+
 unmailboxes *
 {% if email.provider == "gmail" %}
 mailboxes +INBOX "+All Mail" "+Sent Mail" +Drafts +Starred +Important +Spam +Trash
