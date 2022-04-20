@@ -2,7 +2,7 @@
 
 notmuch new
 
-NEW_MAIL="$(notmuch search tag:new)"
+NEW_MAIL="$(notmuch search tag:new and tag:unread)"
 while IFS= read -r MESSAGE; do
     DATE="$(echo $MESSAGE | cut -d ' ' -f 2)"
     COUNT="$(echo $MESSAGE | cut -d ' ' -f 3)"
