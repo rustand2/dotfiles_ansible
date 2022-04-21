@@ -32,7 +32,7 @@ macro index,pager gd "<change-folder>=Drafts<enter>"      "open drafts"
 macro index,pager gs "<change-folder>=Sent<enter>"        "open sent"
 macro index,pager gt "<change-folder>$trash<enter>"       "open trash"
 macro index,pager gf "<change-folder>?"                   "open mailbox..."
-macro index,pager ga ":unset wait\_key\n<shell-escape>~/.mutt/switchaccount.sh\n:source ~/.mutt/curr_account\n<change-folder>=INBOX\n"
+macro index,pager ga ":unset wait\_key\n<shell-escape>~/.config/neomutt/switchaccount.sh\n:source ~/.config/neomutt/curr_account\n<change-folder>=INBOX\n"
 
 # Actions
 # ----------------------------------------------------

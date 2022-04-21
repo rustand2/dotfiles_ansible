@@ -1,39 +1,39 @@
-- name: Create .mutt directory
+- name: Create .config/neomutt directory
   file:
-    path: /home/{{ username }}/.mutt/
+    path: /home/{{ username }}/.config/neomutt/
     state: directory
   become: yes
   become_user: "{{ username }}"
 
 - name: Create muttrc
   template:
-    src: HOME/.mutt/muttrc.j2
-    dest: /home/{{ username }}/.mutt/muttrc
+    src: HOME/.config/neomutt/muttrc.j2
+    dest: /home/{{ username }}/.config/neomutt/muttrc
   become: yes
   become_user: "{{ username }}"
 
 - name: Configure mutt
   copy:
     src: "{{ item }}"
-    dest: /home/{{ username }}/.mutt/
+    dest: /home/{{ username }}/.config/neomutt/
   loop:
-    - HOME/.mutt/colors
-    - HOME/.mutt/keybinds
-    - HOME/.mutt/powerline
+    - HOME/.config/neomutt/colors
+    - HOME/.config/neomutt/keybinds
+    - HOME/.config/neomutt/powerline
   become: yes
   become_user: "{{ username }}"
 
-- name: Create .mutt/accounts directory
+- name: Create .config/neomutt/accounts directory
   file:
-    path: /home/{{ username }}/.mutt/accounts/
+    path: /home/{{ username }}/.config/neomutt/accounts/
     state: directory
   become: yes
   become_user: "{{ username }}"
 
 - name: Configure email accounts in mutt
   template:
-    src: HOME/.mutt/account.j2
-    dest: /home/{{ username }}/.mutt/accounts/{{ email.account_name }}
+    src: HOME/.config/neomutt/account.j2
+    dest: /home/{{ username }}/.config/neomutt/accounts/{{ email.account_name }}
   become: yes
   become_user: "{{ username }}"
   loop: "{{ email_accounts }}"
@@ -42,15 +42,15 @@
 
 - name: Add mailcap
   copy:
-    src: HOME/.mutt/mailcap
-    dest: /home/{{ username }}/.mutt/mailcap
+    src: HOME/.config/neomutt/mailcap
+    dest: /home/{{ username }}/.config/neomutt/mailcap
   become: yes
   become_user: "{{ username }}"
 
 - name: Add account switching script
   copy:
-    src: HOME/.mutt/switchaccount.sh
-    dest: /home/{{ username }}/.mutt/switchaccount.sh
+    src: HOME/.config/neomutt/switchaccount.sh
+    dest: /home/{{ username }}/.config/neomutt/switchaccount.sh
     mode: '0700'
   become: yes
   become_user: "{{ username }}"
