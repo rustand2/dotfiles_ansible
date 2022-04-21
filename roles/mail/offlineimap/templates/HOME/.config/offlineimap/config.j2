@@ -2,7 +2,7 @@
 # List of accounts to be synced, separated by a comma.
 accounts = {% for email in email_accounts %}{{ email.account_name }}{% if not loop.last %}, {% endif %}{% endfor %}
 
-pythonfile = ~/.offlineimap/auth.py
+pythonfile = ~/.config/offlineimap/auth.py
 # Controls how many accounts may be synced simultaneously
 maxsyncaccounts = 1
 
@@ -20,7 +20,7 @@ autorefresh = 0.5
 # 10 quick refreshes between each full refresh, with 0.5 minutes between every
 # refresh, regardless of type.
 quick = 10
-postsynchook = ~/.offlineimap/notify-new.sh
+postsynchook = ~/.config/offlineimap/notify-new.sh
 
 [Repository {{ email.account_name }}-local]
 # OfflineIMAP supports Maildir, GmailMaildir, and IMAP for local repositories.
