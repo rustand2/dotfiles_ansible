@@ -1,0 +1,6 @@
+- name: Uninstall notmuch
+  package:
+    name:
+      - notmuch
+    state: absent
+  become: yes

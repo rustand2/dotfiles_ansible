@@ -20,7 +20,9 @@ autorefresh = 0.5
 # 10 quick refreshes between each full refresh, with 0.5 minutes between every
 # refresh, regardless of type.
 quick = 10
-postsynchook = ~/.config/offlineimap/notify-new.sh
+{% if "mail/notmuch" in role_names %}
+postsynchook = ~/.config/notmuch/default/notmuch.sh
+{% endif %}
 
 [Repository {{ email.account_name }}-local]
 # OfflineIMAP supports Maildir, GmailMaildir, and IMAP for local repositories.

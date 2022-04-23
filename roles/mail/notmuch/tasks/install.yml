@@ -1,6 +1,6 @@
-- name: Install offlineimap
+- name: Install notmuch
   package:
     name:
-      - offlineimap
+      - notmuch
     state: present
   become: yes

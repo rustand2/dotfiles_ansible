@@ -17,6 +17,7 @@
     - neovim
     - pass
     - dunst
+    - mail/notmuch
     - mail/neomutt
     - mail/offlineimap
     - mail/msmtp
