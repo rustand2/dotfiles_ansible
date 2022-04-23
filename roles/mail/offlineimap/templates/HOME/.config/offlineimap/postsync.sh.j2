@@ -1,7 +1,12 @@
 #!/bin/sh
 
-notmuch new
+{% if "mail/notmuch" in role_names %}
 
+# Import new messages to notmuch database
+notmuch new
+{% if "dunst" in role_names %}
+
+# Show notification on new unread mail
 NEW_MAIL="$(notmuch search tag:new and tag:unread)"
 while IFS= read -r MESSAGE; do
     DATE="$(echo $MESSAGE | cut -d ' ' -f 2)"
@@ -10,5 +15,8 @@ while IFS= read -r MESSAGE; do
     TITLE="$(echo $MESSAGE | cut -d ' ' -f 5- | cut -d ';' -f 2 | sed -e 's/^ //g')"
     notify-send "$SENDER" "$TITLE"
 done <<< "$NEW_MAIL"
+{% endif %}
 
-notmuch tag -new tag:new
+# Remove "new" tag
+notmuch tag -new -- tag:new
+{% endif %}

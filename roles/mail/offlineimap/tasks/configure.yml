@@ -21,6 +21,14 @@
   become: yes
   become_user: "{{ username }}"
 
+- name: Configure offlineimap postsync
+  template:
+    src: HOME/.config/offlineimap/postsync.sh.j2
+    dest: /home/{{ username }}/.config/offlineimap/postsync.sh
+    mode: '0700'
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Enable offlineimap service
   systemd:
     name: offlineimap@{{ item.account_name }}
