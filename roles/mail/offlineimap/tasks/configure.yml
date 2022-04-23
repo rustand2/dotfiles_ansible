@@ -13,14 +13,6 @@
   become: yes
   become_user: "{{ username }}"
 
-- name: Email notification script
-  copy:
-    src: HOME/.config/offlineimap/notify-new.sh
-    dest: /home/{{ username }}/.config/offlineimap/notify-new.sh
-    mode: '0700'
-  become: yes
-  become_user: "{{ username }}"
-
 - name: Configure offlineimap
   template:
     src: HOME/.config/offlineimap/config.j2

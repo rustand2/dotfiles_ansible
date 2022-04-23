@@ -1,0 +1,18 @@
+---
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - notmuch.install
+  - import_tasks: configure.yml
+    tags:
+      - configure
+      - notmuch.configure
+  tags:
+    - notmuch
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - notmuch.uninstall
