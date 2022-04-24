@@ -32,8 +32,10 @@ function notifyosd-precmd() {
     fi
 }
 
-# make sure this plays nicely with any existing precmd
-precmd_functions+=( notifyosd-precmd )
+if [ ! -z $DISPLAY ]; then
+    # make sure this plays nicely with any existing precmd
+    precmd_functions+=( notifyosd-precmd )
+fi
 
 # get command name and start the timer
 function notifyosd-preexec() {
@@ -43,5 +45,7 @@ function notifyosd-preexec() {
     cmd_window_start="$(xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}')"
 }
 
-# make sure this plays nicely with any existing preexec
-preexec_functions+=( notifyosd-preexec )
+if [ ! -z $DISPLAY ]; then
+    # make sure this plays nicely with any existing preexec
+    preexec_functions+=( notifyosd-preexec )
+fi
