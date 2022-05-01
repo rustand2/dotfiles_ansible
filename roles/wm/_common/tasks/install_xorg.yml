@@ -3,3 +3,19 @@
     name: "{{ xorg }}"
     state: present
   become: yes
+
+- Autostart X on VT login
+  copy:
+    src: HOME/.bash_profile
+    dest: /home/{{ username }}/.zprofile
+  become: yes
+  become_user: "{{ username }}"
+  when: shell == 'zsh'
+
+- Autostart X on VT login
+  copy:
+    src: HOME/.bash_profile
+    dest: /home/{{ username }}/.bash_profile
+  become: yes
+  become_user: "{{ username }}"
+  when: shell == 'bash'
