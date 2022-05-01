@@ -10,6 +10,7 @@
   package:
     name:
       - rofimoji
+      - xdotool
     state: present
   become: yes
   tags:

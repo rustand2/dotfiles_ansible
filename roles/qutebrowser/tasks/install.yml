@@ -4,3 +4,11 @@
       - qutebrowser
     state: present
   become: yes
+
+- name: Install qutebrowser python dependencies
+  pip:
+    name:
+      - tldextract
+      - adblock
+    state: present
+  become: yes
