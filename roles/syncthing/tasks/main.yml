@@ -1,0 +1,18 @@
+---
+- block:
+  - import_tasks: install.yml
+    tags:
+      - install
+      - syncthing.install
+  - import_tasks: configure.yml
+    tags:
+      - configure
+      - syncthing.configure
+  tags:
+    - syncthing
+
+- import_tasks: uninstall.yml
+  tags:
+    - never
+    - uninstall
+    - syncthing.uninstall
