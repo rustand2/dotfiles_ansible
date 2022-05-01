@@ -7,3 +7,22 @@ email_accounts:
     address: <YOUR_EMAIL_ADDRESS>
 pass_gpg_key_id: <YOUR_GPG_KEY_ID>
 shell: <DEFAULT_SHELL>
+syncthing:
+  devices:
+    - id: <SOME_DEVICE_ID>
+      name: <SOME_DEVICE_NAME>
+    - id: <SOME_OTHER_DEVICE_ID>
+      name: <SOME_OTHER_DEVICE_NAME>
+  local_device: <LOCAL_DEVICE_ID>
+  folders:
+    - id: Documents
+      path: /home/{{ username }}/Documents
+      devices:
+        - <SOME_DEVICE_ID>
+        - <SOME_OTHER_DEVICE_ID>
+  gui:
+    username: "{{ username }}"
+    password: "{{ password }}"
+    api_key:
+    address: 127.0.0.1:8384
+    enabled: true

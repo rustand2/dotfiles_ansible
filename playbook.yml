@@ -23,6 +23,7 @@
     - mail/msmtp
     - tmux
     - autorandr
+    - syncthing
     - wm/qtile
     - terminal/alacritty
     - xkb

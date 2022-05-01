@@ -1,0 +1,6 @@
+- name: Configure syncthing
+  template:
+    src: HOME/.config/syncthing/config.xml.j2
+    dest: /home/{{ username }}/.config/syncthing/config.xml
+  become: yes
+  become_user: "{{ username }}"

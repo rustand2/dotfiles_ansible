@@ -1,0 +1,6 @@
+- name: Uninstall syncthing
+  package:
+    name:
+      - syncthing
+    state: absent
+  become: yes
