@@ -8,4 +8,6 @@ fi
 
 [[ -f ~/.Xresources ]] && xrdb ~/.Xresources
 
+autorandr --change
+
 exec qtile

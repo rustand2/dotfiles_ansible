@@ -4,7 +4,7 @@
     state: present
   become: yes
 
-- Autostart X on VT login
+- name: Autostart X on VT login
   copy:
     src: HOME/.bash_profile
     dest: /home/{{ username }}/.zprofile
@@ -12,7 +12,7 @@
   become_user: "{{ username }}"
   when: shell == 'zsh'
 
-- Autostart X on VT login
+- name: Autostart X on VT login
   copy:
     src: HOME/.bash_profile
     dest: /home/{{ username }}/.bash_profile
