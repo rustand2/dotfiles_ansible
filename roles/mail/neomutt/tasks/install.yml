@@ -13,6 +13,13 @@
   become: yes
   when: ansible_distribution == 'Archlinux'
 
+- name: Install w3m
+  package:
+    name:
+      - w3m
+    state: present
+  become: yes
+
 - name: Install viu image viewer from github
   get_url:
     url: https://github.com/atanunq/viu/releases/download/v1.4.0/viu
