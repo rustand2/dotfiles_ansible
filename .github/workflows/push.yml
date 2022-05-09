@@ -1,0 +1,14 @@
+name: Build containers
+on: [push]
+jobs:
+  Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install ansible
+        run: sudo apt update && sudo apt install ansible
+
+      - name: Run playbook
+        run: ansible-playbook -i 127.0.0.1, -c local playbook.yml --extra-vars @.github/workflows/vars.yml

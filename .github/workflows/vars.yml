@@ -1,0 +1,20 @@
+username: test-user
+password: test-password
+fullname: "Test User"
+email_accounts:
+  - account_name: dummyaccount
+    provider: gmail
+    address: dummyaccount@gmail.com
+pass_gpg_key_id: testuser@pass.asd
+shell: zsh
+syncthing:
+  devices: []
+  local_device:
+  folders: []
+  gui:
+    username: "{{ username }}"
+    password: "{{ password }}"
+    api_key:
+    address: 127.0.0.1:8384
+    enabled: true
+
