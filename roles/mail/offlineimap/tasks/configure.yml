@@ -38,6 +38,13 @@
   tags:
     - systemd
 
+- name: Install offlineimap service
+  copy:
+    src: usr/lib/systemd/user/offlineimap@.service
+    dest: /usr/lib/systemd/user/offlineimap@.service
+  become: yes
+  when: ansible_os_family == 'Debian'
+
 - name: Enable offlineimap service
   file:
     src: /usr/lib/systemd/user/offlineimap@.service
