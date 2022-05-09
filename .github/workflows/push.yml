@@ -11,4 +11,4 @@ jobs:
         run: sudo apt update && sudo apt install ansible
 
       - name: Run playbook
-        run: ansible-playbook -i 127.0.0.1, -c local playbook.yml --extra-vars @.github/workflows/vars.yml
+        run: ansible-playbook -i 127.0.0.1, -c local playbook.yml --extra-vars @.github/vars.yml
