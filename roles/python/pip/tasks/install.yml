@@ -10,3 +10,9 @@
     name:
       - wheel
   become: yes
+
+- name: Install pipx
+  pip:
+    name:
+      - pipx
+  become: yes
