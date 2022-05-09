@@ -13,6 +13,13 @@
   become: yes
   become_user: "{{ username }}"
 
+- name: Ensure .local/bin exists for user
+  file:
+    dest: /home/{{ username }}/.local/bin
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Add notmuch-notify script
   template:
     src: HOME/.local/bin/notmuch-notify.j2
