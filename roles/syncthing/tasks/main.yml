@@ -1,5 +1,9 @@
 ---
 - block:
+  - import_tasks: prepare.yml
+    tags:
+      - prepare
+      - syncthing.prepare
   - import_tasks: install.yml
     tags:
       - install

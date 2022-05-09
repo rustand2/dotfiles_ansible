@@ -1,0 +1,6 @@
+- name: Install bcrypt
+  pip:
+    name:
+      - passlib
+    state: present
+  become: yes
