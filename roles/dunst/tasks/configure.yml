@@ -6,10 +6,19 @@
   become_user: "{{ username }}"
 
 - name: Enable notification service
+  file:
+    src: /usr/lib/systemd/user/dunst.service
+    dest: /home/{{ username }}/.config/systemd/user/default.target.wants/dunst.service
+    state: link
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Restart notification service
   systemd:
     name: dunst
     scope: user
-    enabled: yes
     state: restarted
+    daemon_reload: yes
   become: yes
   become_user: "{{ username }}"
+  failed_when: False

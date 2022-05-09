@@ -37,11 +37,21 @@
   become_user: "{{ username }}"
 
 - name: Enable offlineimap service
+  file:
+    src: /usr/lib/systemd/user/offlineimap@.service
+    dest: /home/{{ username }}/.config/systemd/user/default.target.wants/offlineimap@{{ item.account_name }}.service
+    state: link
+  become: yes
+  become_user: "{{ username }}"
+  loop: "{{ email_accounts }}"
+
+- name: Restart offlineimap service
   systemd:
     name: offlineimap@{{ item.account_name }}
     scope: user
-    enabled: yes
     state: restarted
+    daemon_reload: yes
   become: yes
   become_user: "{{ username }}"
+  failed_when: False
   loop: "{{ email_accounts }}"
