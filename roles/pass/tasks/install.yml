@@ -5,6 +5,6 @@
 
 - name: Install pass-otp
   package:
-    name: pass-otp
+    name: "{{ pass_otp }}"
   become: yes
 
