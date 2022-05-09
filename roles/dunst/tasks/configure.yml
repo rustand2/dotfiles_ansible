@@ -1,3 +1,10 @@
+- name: Ensure systemd default target dir exists for user
+  file:
+    dest: /home/{{ username }}/.config/systemd/user/default.target.wants/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Enable notification service
   systemd:
     name: dunst

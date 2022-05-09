@@ -29,6 +29,13 @@
   become: yes
   become_user: "{{ username }}"
 
+- name: Ensure systemd default target dir exists for user
+  file:
+    path: /home/{{ username }}/.config/systemd/user/default.target.wants/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Enable offlineimap service
   systemd:
     name: offlineimap@{{ item.account_name }}

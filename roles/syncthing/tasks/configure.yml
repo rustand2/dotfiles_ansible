@@ -1,3 +1,10 @@
+- name: Create syncthing config dir
+  file:
+    dest: /home/{{ username }}/.config/syncthing/
+    state: directory
+  become: yes
+  become_user: "{{ username }}"
+
 - name: Configure syncthing
   template:
     src: HOME/.config/syncthing/config.xml.j2
