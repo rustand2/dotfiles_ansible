@@ -39,13 +39,11 @@
       tasks_from: uninstall
     tags:
       - fish.uninstall
-      - fish
   - import_role:
       name: shell/zsh
       tasks_from: uninstall
     tags:
       - zsh.uninstall
-      - zsh
   tags:
     - shell/all.uninstall
-    - shell/all
+    - never

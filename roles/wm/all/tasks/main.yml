@@ -38,14 +38,12 @@
       name: wm/i3
       tasks_from: uninstall
     tags:
-      - i3
       - i3.uninstall
   - import_role:
       name: wm/qtile
       tasks_from: uninstall
     tags:
-      - qtile
       - qtile.uninstall
   tags:
     - wm/all.uninstall
-    - wm/all
+    - never
