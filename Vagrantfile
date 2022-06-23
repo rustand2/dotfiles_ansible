@@ -2,10 +2,6 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.define "skole" do |skole|
-    skole.vm.box = "archlinux/archlinux"
-    skole.vm.synced_folder '/home/lars/c4v', '/c4v', owner: 'lars'
-  end
   config.vm.define "arch" do |arch|
     arch.vm.box = "archlinux/archlinux"
   end
