@@ -4,6 +4,7 @@
   package:
     name:
       - qutebrowser
+      - pdfjs
     state: present
   become: yes
 
