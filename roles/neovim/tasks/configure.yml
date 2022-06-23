@@ -1,3 +1,6 @@
+# TODO install in home dir
+
+
 - name: Create dir /etc/vim
   file:
     path: /etc/vim/
@@ -35,6 +38,7 @@
     force: yes
   become: yes
 
+    # TODO maybe set this in ~/.bash_profile instead
 - name: Set nvim as EDITOR and VISUAL
   copy:
     src: etc/profile.d/editor.sh

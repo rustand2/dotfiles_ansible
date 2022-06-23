@@ -13,6 +13,8 @@
   tags:
     - update
 
+      # TODO generalize
+
 - name: Upgrade system
   community.general.pacman:
     upgrade: yes
@@ -20,6 +22,8 @@
   when: ansible_distribution == 'Archlinux'
   tags:
     - update
+
+      # TODO generalize
 
 - name: Install base-devel
   package:
@@ -30,6 +34,8 @@
     state: present
   become: yes
   when: ansible_distribution == 'Archlinux'
+    #
+      # TODO generalize
 
 - name: Install sudo
   package:
@@ -73,3 +79,5 @@
   become: yes
   tags:
     - gui
+
+      # TODO reorganize

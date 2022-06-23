@@ -5,6 +5,8 @@
     state: present
   become: yes
 
+    # TODO install Ag
+
 - name: Install pynvim
   pip:
     name:

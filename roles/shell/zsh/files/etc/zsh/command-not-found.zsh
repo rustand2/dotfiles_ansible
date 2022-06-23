@@ -1,6 +1,7 @@
 command_not_found_handler() {
   local pkgs cmd="$1"
 
+  # TODO fix pkgfile --update
   if which pkgfile &> /dev/null; then
     pkgs=(${(f)"$(pkgfile -b -v -- "$cmd" 2>/dev/null)"})
     if [[ -n "$pkgs" ]]; then

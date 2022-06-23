@@ -29,3 +29,8 @@
     - wifi
     - bluetooth
     - virtualization
+
+# TODO add notification for failed services!
+# TODO add calendar sync (vdirsyncer?)
+# TODO add calendar app
+# TODO add meeting invite converter/importer

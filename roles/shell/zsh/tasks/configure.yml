@@ -1,3 +1,8 @@
+# TODO install in home dir
+# TODO add ~/.local/bin to PATH
+# TODO source ~/.bash_profile
+# TODO add plugin tag
+
 - name: Install zsh config
   copy:
     src: "{{ item }}"

@@ -45,6 +45,8 @@
   become: yes
   when: ansible_os_family == 'Debian'
 
+
+    # TODO add small delay on start to avoid starting before ecryptfs
 - name: Enable offlineimap service
   file:
     src: /usr/lib/systemd/user/offlineimap@.service

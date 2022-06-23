@@ -5,6 +5,8 @@
     state: present
   become: yes
 
+    # TODO install pipx
+
 - name: Install python wheel
   pip:
     name:

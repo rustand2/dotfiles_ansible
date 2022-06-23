@@ -1,3 +1,4 @@
+# TODO install in home dir
 - name: Install tmux.conf
   copy:
     src: etc/tmux.conf
@@ -10,6 +11,7 @@
     dest: "{{ sudoers_d }}/tmux"
   become: yes
 
+    # TODO check plugin tag in tmux conf template
 - name: Check if TPM is installed
   stat:
     path: /home/{{ username }}/.tmux/plugins/tpm/bin/install_plugins
