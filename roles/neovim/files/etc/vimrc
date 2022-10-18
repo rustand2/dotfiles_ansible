@@ -160,6 +160,8 @@ hi InactiveWindow ctermbg=NONE guibg=#041f27
 set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 autocmd FocusGained * hi ActiveWindow ctermbg=8 guibg=#002b36
 autocmd FocusLost * hi ActiveWindow ctermbg=NONE guibg=#041f27
+autocmd FocusLost * set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+autocmd FocusGained * set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 
 " Restore tmux background color on exit
 if exists('$TMUX')
