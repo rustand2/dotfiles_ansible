@@ -156,10 +156,10 @@ augroup END
 
 " Highlight active pane background
 hi ActiveWindow ctermbg=8 guibg=#002b36
-hi InactiveWindow ctermbg=NONE guibg=NONE
+hi InactiveWindow ctermbg=NONE guibg=#041f27
 set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 autocmd FocusGained * hi ActiveWindow ctermbg=8 guibg=#002b36
-autocmd FocusLost * hi ActiveWindow ctermbg=NONE guibg=NONE
+autocmd FocusLost * hi ActiveWindow ctermbg=NONE guibg=#041f27
 
 " Restore tmux background color on exit
 if exists('$TMUX')
