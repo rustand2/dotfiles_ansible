@@ -4,7 +4,7 @@
   package:
     name:
       - qutebrowser
-      - pdfjs
+      - pdfjs-legacy
     state: present
   become: yes
 
