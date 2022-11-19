@@ -19,5 +19,11 @@
   become: yes
   become_user: "{{ username }}"
 
+- name: Install userscripts
+  copy:
+    src: HOME/.config/qutebrowser/greasemonkey/youtube-ad-blocker.js
+    dest: /home/{{ username }}/.config/qutebrowser/greasemonkey/
+  become: yes
+  become_user: "{{ username }}"
 
     # TODO qute dmenu
