@@ -124,7 +124,17 @@ config.set('content.hyperlink_auditing', False)
 #   - hosts: Use hosts blocking
 #   - both: Use both hosts blocking and Brave's ABP-style adblocker
 c.content.blocking.method = 'both'
-
+c.content.blocking.adblock.lists = [
+    'https://easylist.to/easylist/easylist.txt',
+    'https://easylist.to/easylist/easyprivacy.txt',
+    #'https://easylist.to/easylist/fanboy-social.txt', Already included in fanboy-annoyance.txt
+    #'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt', Already included in fanboy-annoyance.txt
+    'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
+    'https://raw.githubusercontent.com/DandelionSprout/adfilt/master/NorwegianExperimentalList%20alternate%20versions/NordicFiltersABP-Inclusion.txt',
+    'https://easylist-downloads.adblockplus.org/antiadblockfilters.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt',
+    'https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt',
+]
 # Load images automatically in web pages.
 # Type: Bool
 config.set('content.images', True, 'chrome-devtools://*')
