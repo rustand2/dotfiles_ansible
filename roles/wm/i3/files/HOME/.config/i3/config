@@ -12,7 +12,7 @@
 
 set $super Mod4
 set $hyper Mod3
-set $terminal urxvt
+set $terminal alacritty
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -48,15 +48,23 @@ bindsym $super+Left  focus left
 bindsym $super+Down  focus down
 bindsym $super+Up    focus up
 bindsym $super+Right focus right
+bindsym $super+h     focus left
+bindsym $super+j     focus down
+bindsym $super+k     focus up
+bindsym $super+l     focus right
 
 # move windows
 bindsym $super+Shift+Left move left
 bindsym $super+Shift+Down move down
 bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
+bindsym $super+Shift+h move left
+bindsym $super+Shift+j move down
+bindsym $super+Shift+k move up
+bindsym $super+Shift+l move right
 
 # split in horizontal orientation
-bindsym $super+h split h
+#bindsym $super+h split h
 
 # split in vertical orientation
 bindsym $super+v split v
@@ -66,8 +74,8 @@ bindsym $super+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $super+s layout stacking
-bindsym $super+w layout tabbed
-bindsym $super+e layout toggle split
+bindsym $super+d layout tabbed
+#bindsym $super+e layout toggle split
 
 # toggle tiling / floating
 bindsym $super+Shift+space floating toggle
@@ -82,45 +90,49 @@ bindsym $super+a focus parent
 bindsym $super+c focus child
 
 # switch to workspace
-bindsym $super+1 workspace number 1
-bindsym $super+2 workspace number 2
-bindsym $super+3 workspace number 3
-bindsym $super+4 workspace number 4
-bindsym $super+5 workspace number 5
-bindsym $super+6 workspace number 6
-bindsym $super+7 workspace number 7
-bindsym $super+8 workspace number 8
-bindsym $super+9 workspace number 9
-bindsym $super+0 workspace number 10
+bindsym $super+q workspace q
+bindsym $super+w workspace w
+bindsym $super+e workspace e
+bindsym $super+r workspace r
+bindsym $super+t workspace t
+bindsym $super+y workspace y
+bindsym $super+u workspace u
+bindsym $super+i workspace i
+bindsym $super+o workspace o
+bindsym $super+p workspace p
 
 # move focused container to workspace
-bindsym $super+Shift+1 move container to workspace number 1; workspace number 1
-bindsym $super+Shift+2 exec i3-msg "move container to workspace number 2" && i3-msg "workspace number 2"
-bindsym $super+Shift+3 exec i3-msg "move container to workspace number 3" && i3-msg "workspace number 3"
-bindsym $super+Shift+4 exec i3-msg "move container to workspace number 4" && i3-msg "workspace number 4"
-bindsym $super+Shift+5 exec i3-msg "move container to workspace number 5" && i3-msg "workspace number 5"
-bindsym $super+Shift+6 exec i3-msg "move container to workspace number 6" && i3-msg "workspace number 6"
-bindsym $super+Shift+7 exec i3-msg "move container to workspace number 7" && i3-msg "workspace number 7"
-bindsym $super+Shift+8 exec i3-msg "move container to workspace number 8" && i3-msg "workspace number 8"
-bindsym $super+Shift+9 exec i3-msg "move container to workspace number 9" && i3-msg "workspace number 9"
-bindsym $super+Shift+0 exec i3-msg "move container to workspace number 10" && i3-msg "workspace number 10"
+bindsym $super+Shift+q move container to workspace q; workspace q
+bindsym $super+Shift+w move container to workspace w; workspace w
+bindsym $super+Shift+e move container to workspace e; workspace e
+bindsym $super+Shift+r move container to workspace r; workspace r
+bindsym $super+Shift+t move container to workspace t; workspace t
+bindsym $super+Shift+y move container to workspace y; workspace y
+bindsym $super+Shift+u move container to workspace u; workspace u
+bindsym $super+Shift+i move container to workspace i; workspace i
+bindsym $super+Shift+o move container to workspace o; workspace o
+bindsym $super+Shift+p move container to workspace p; workspace p
 
 # reload the configuration file
 bindsym $super+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $super+Shift+r restart
+bindsym $super+Control+r restart
 # exit i3 (logs you out of your X session)
-bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $super+Control+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Resize
 bindsym $super+Mod1+Left resize shrink width 1 px or 1 ppt
 bindsym $super+Mod1+Right resize grow width 1 px or 1 ppt
 bindsym $super+Mod1+Down resize shrink height 1 px or 1 ppt
 bindsym $super+Mod1+Up resize grow height 1 px or 1 ppt
+bindsym $super+Mod1+h resize shrink width 1 px or 1 ppt
+bindsym $super+Mod1+k resize grow width 1 px or 1 ppt
+bindsym $super+Mod1+j resize shrink height 1 px or 1 ppt
+bindsym $super+Mod1+l resize grow height 1 px or 1 ppt
 
 
-bindsym $super+u border none
-bindsym $super+Shift+u border pixel 7
+#bindsym $super+u border none
+#bindsym $super+Shift+u border pixel 7
 
 
 # Hyper bindings:
@@ -129,16 +141,24 @@ bindsym $super+Shift+u border pixel 7
 #bindsym $hyper+s exec hypersel
 bindsym $hyper+Left focus output left
 bindsym $hyper+Right focus output right
+bindsym $hyper+h focus output left
+bindsym $hyper+l focus output right
 bindsym $hyper+Shift+Left exec i3-msg "move container to output prev" && i3-msg "focus output prev"
 bindsym $hyper+Shift+Right exec i3-msg "move container to output next" && i3-msg "focus output next"
+bindsym $hyper+Shift+h exec i3-msg "move container to output prev" && i3-msg "focus output prev"
+bindsym $hyper+Shift+l exec i3-msg "move container to output next" && i3-msg "focus output next"
 bindsym $hyper+Up workspace prev
 bindsym $hyper+Down workspace next
+bindsym $hyper+k workspace prev
+bindsym $hyper+j workspace next
 bindsym $hyper+Shift+Up exec i3-msg "move container to workspace prev" && i3-msg "workspace prev"
 bindsym $hyper+Shift+Down exec i3-msg "move container to workspace next" && i3-msg "workspace next"
+bindsym $hyper+Shift+k exec i3-msg "move container to workspace prev" && i3-msg "workspace prev"
+bindsym $hyper+Shift+j exec i3-msg "move container to workspace next" && i3-msg "workspace next"
 bindsym $hyper+Return exec i3-new-workspace
 
-bindsym $hyper+l exec i3lock -c 000000
-bindsym $hyper+a exec swapkeylayout
+#bindsym $hyper+l exec i3lock -c 000000
+#bindsym $hyper+a exec swapkeylayout
 
 
 # colors
