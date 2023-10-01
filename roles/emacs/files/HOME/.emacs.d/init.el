@@ -39,8 +39,10 @@
 ;; Enable Evil
 (require 'evil)
 (evil-mode 1)
+(evil-set-undo-system 'undo-redo)
 (setq x-select-enable-clipboard t)
 (load-theme 'solarized-dark t)
+(setq-default indent-tabs-mode nil)
 
 (which-key-mode 1)
 (xclip-mode 1)
@@ -52,7 +54,13 @@
 (treemacs-tag-follow-mode 1)
 (treemacs-project-follow-mode 1)
 (savehist-mode 1)
+(global-hl-line-mode 1)
+
+(windmove-default-keybindings)
 (require 'treemacs-evil)
+(require 'org-ref)
+(require 'org-ref-helm)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)) 
 
 (menu-bar-mode -1)
 
@@ -93,10 +101,22 @@
 
 (add-hook 'buffer-list-update-hook 'tmux-navigate-directions)
 
-;;(advice-add 'switch-to-buffer :after (lambda (&rest r) (tmux-navigate-directions)))
+(setq bibtex-completion-bibliography '("~/Documents/master/thesis/Ref.bib")
+	bibtex-completion-library-path '("~/Documents/master/thesis/papera.s")
+	bibtex-completion-notes-path "~/Documents/master/thesis/"
+	bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
 
-
-(slime-setup '(slime-fancy slime-quicklisp slime-asdf))
+	bibtex-completion-additional-search-fields '(keywords)
+	bibtex-completion-display-formats
+	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+	  (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+	  (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+	  (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+	  (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+	bibtex-completion-pdf-open-function
+	(lambda (fpath)
+	  (call-process "open" nil 0 nil fpath)))
+;;(slime-setup '(slime-fancy slime-quicklisp slime-asdf))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -105,7 +125,7 @@
  '(custom-safe-themes
    '("fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" default))
  '(package-selected-packages
-   '(flycheck-package package-lint flycheck undohist ## xclip solarized-theme neotree treemacs slime xelb which-key vertico evil)))
+   '(ivy helm-bibtex org-ref ag sly flycheck-package package-lint flycheck undohist ## xclip solarized-theme neotree treemacs slime xelb which-key vertico evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
