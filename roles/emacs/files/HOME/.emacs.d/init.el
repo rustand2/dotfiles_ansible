@@ -5,12 +5,14 @@
 (package-initialize)
 (package-refresh-contents)
 
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+
 ;; Download Evil
 (unless (package-installed-p 'evil)
   (package-install 'evil))
 
-(unless (package-installed-p 'slime)
-  (package-install 'slime))
+(unless (package-installed-p 'sly)
+  (package-install 'sly))
 
 (unless (package-installed-p 'xclip)
   (package-install 'xclip))
@@ -36,10 +38,13 @@
 (unless (package-installed-p 'company)
   (package-install 'company))
 
-;; Enable Evil
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
 (require 'evil)
+(when (require 'evil-collection nil t)
+  (evil-collection-init))
 (evil-mode 1)
-(evil-set-undo-system 'undo-redo)
+(evil-set-undo-system 'undo-tree)
 (setq x-select-enable-clipboard t)
 (load-theme 'solarized-dark t)
 (setq-default indent-tabs-mode nil)
@@ -47,7 +52,6 @@
 (which-key-mode 1)
 (xclip-mode 1)
 (xterm-mouse-mode 1)
-;;(lsp-mode 1)
 (dap-mode 1)
 (company-mode 1)
 ;;(treemacs-git-mode 'deferred)
@@ -55,6 +59,19 @@
 (treemacs-project-follow-mode 1)
 (savehist-mode 1)
 (global-hl-line-mode 1)
+(yas-global-mode 1)
+(helm-mode 1)
+(projectile-mode 1)
+(evil-collection-init)
+(auto-revert-mode 1)
+
+(global-undo-tree-mode 1)
+(setq undo-tree-auto-save-history t)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (windmove-default-keybindings)
 (require 'treemacs-evil)
@@ -63,7 +80,10 @@
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)) 
 
 (menu-bar-mode -1)
-
+(unless (display-graphic-p)
+        (require 'evil-terminal-cursor-changer)
+        (evil-terminal-cursor-changer-activate) ; or (etcc-on)
+        )
 (defun highlight-selected-window ()
   "Highlight selected window with a different background color."
   (walk-windows (lambda (w)
@@ -102,7 +122,7 @@
 (add-hook 'buffer-list-update-hook 'tmux-navigate-directions)
 
 (setq bibtex-completion-bibliography '("~/Documents/master/thesis/Ref.bib")
-	bibtex-completion-library-path '("~/Documents/master/thesis/papera.s")
+	bibtex-completion-library-path '("~/Documents/master/thesis/papers" "~/Documents/master/thesis/papers/ota" "~/Documents/master/thesis/papers/security" "~/Documents/master/thesis/papers/identity" "~/Documents/master/thesis/papers/chain-of-trust" )
 	bibtex-completion-notes-path "~/Documents/master/thesis/"
 	bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
 
@@ -115,7 +135,25 @@
 	  (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
 	bibtex-completion-pdf-open-function
 	(lambda (fpath)
-	  (call-process "open" nil 0 nil fpath)))
+	  (call-process "okular" nil 0 nil fpath)))
+
+(require 'mu4e)
+
+(setq mu4e-maildir (expand-file-name "~/mail/gmail"))
+;; use mu4e for e-mail in emacs
+(setq mail-user-agent 'mu4e-user-agent)
+
+;; these must start with a "/", and must exist
+;; (i.e.. /home/user/Maildir/sent must exist)
+;; you use e.g. 'mu mkdir' to make the Maildirs if they don't
+;; already exist
+
+;; below are the defaults; if they do not exist yet, mu4e offers to
+;; create them. they can also functions; see their docstrings.
+(setq mu4e-sent-folder   "/Sent Mail")
+(setq mu4e-drafts-folder "/Drafts")
+(setq mu4e-trash-folder  "/Trash")
+
 ;;(slime-setup '(slime-fancy slime-quicklisp slime-asdf))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -124,8 +162,9 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" default))
+ '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(ivy helm-bibtex org-ref ag sly flycheck-package package-lint flycheck undohist ## xclip solarized-theme neotree treemacs slime xelb which-key vertico evil)))
+   '(company-auctex auctex pyvenv ripgrep lsp-pyright evil-collection magit yasnippet-snippets yasnippet evil-terminal-cursor-changer projectile ivy helm-bibtex org-ref ag sly flycheck-package package-lint flycheck undohist ## xclip solarized-theme neotree treemacs xelb which-key vertico evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
