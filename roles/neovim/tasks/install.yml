@@ -7,19 +7,19 @@
 
     # TODO install Ag
 
-- name: Install pynvim
-  pip:
-    name:
-      - pynvim
-    state: present
-  become: yes
-
-- name: Install neovim-remote
-  pip:
-    name:
-      - neovim-remote
-    state: present
-  become: yes
+    #- name: Install pynvim
+    #  pip:
+    #    name:
+    #      - pynvim
+    #    state: present
+    #  become: yes
+    #
+    #- name: Install neovim-remote
+    #  pip:
+    #    name:
+    #      - neovim-remote
+    #    state: present
+    #  become: yes
 
 - name: Install xclip
   package:
@@ -30,15 +30,15 @@
   tags:
     - gui
 
-- name: Install python language server
-  pip:
-    name:
-      - "python-lsp-server[all]"
-    state: present
-  become: yes
-  tags:
-    - python
-    - lsp
+      #- name: Install python language server
+      #  pip:
+      #    name:
+      #      - "python-lsp-server[all]"
+      #    state: present
+      #  become: yes
+      #  tags:
+      #    - python
+      #    - lsp
 
 - name: Install vimscript language server and dependencies
   block:
@@ -69,12 +69,12 @@
     - cpp
     - lsp
 
-- name: Install cmake language server
-  pip:
-    name:
-      - cmake-language-server
-    state: present
-  become: yes
-  tags:
-    - cmake
-    - lsp
+      #- name: Install cmake language server
+      #  pip:
+      #    name:
+      #      - cmake-language-server
+      #    state: present
+      #  become: yes
+      #  tags:
+      #    - cmake
+      #    - lsp

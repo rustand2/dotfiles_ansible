@@ -1,9 +1,5 @@
 ---
 - block:
-  - import_tasks: prepare.yml
-    tags:
-      - install
-      - offlineimap.prepare
   - import_tasks: install.yml
     tags:
       - install

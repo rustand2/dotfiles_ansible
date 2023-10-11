@@ -7,14 +7,14 @@
 
     # TODO install pipx
 
-- name: Install python wheel
-  pip:
-    name:
-      - wheel
-  become: yes
+    #- name: Install python wheel
+    #  pip:
+    #    name:
+    #      - wheel
+    #  become: yes
 
-- name: Install pipx
-  pip:
-    name:
-      - pipx
-  become: yes
+    #- name: Install pipx
+    #  pip:
+    #    name:
+    #      - pipx
+    #  become: yes

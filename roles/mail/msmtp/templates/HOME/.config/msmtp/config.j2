@@ -26,6 +26,11 @@ auth           xoauth2
 host           smtp.office365.com
 passwordeval   "pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/refresh_token"
 {% endif %}
+{% else %}
+user           {{ email.user }}
+host           {{ email.smtp.host }}
+port           {{ email.smtp.port }}
+passwordeval   "pass show $(find ~/.password-store -wholename '*/mutt/{{ email.address }}' | cut -d '/' -f 5-)/app_password"
 {% endif %}
 
 {% endfor %}

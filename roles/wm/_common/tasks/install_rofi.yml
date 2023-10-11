@@ -17,12 +17,12 @@
     - gui
     - emoji
 
-- name: Install rofimoji
-  community.general.pipx:
-    name: rofimoji
-    state: present
-  become: yes
-  become_user: "{{ username }}"
-  tags:
-    - gui
-    - emoji
+      #- name: Install rofimoji
+      #  community.general.pipx:
+      #    name: rofimoji
+      #    state: present
+      #  become: yes
+      #  become_user: "{{ username }}"
+      #  tags:
+      #    - gui
+      #    - emoji

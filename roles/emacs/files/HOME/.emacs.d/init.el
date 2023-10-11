@@ -174,12 +174,18 @@
 	  (call-process "okular" nil 0 nil fpath)))
 
 (require 'lsp-latex)
-(setq lsp-latex-forward-search-executable "okular")
-(setq lsp-latex-forward-search-args '("--unique" "file:%p#src:%l%f"))
+
+(add-to-list 'TeX-view-program-list '("Okular" "okular --unique file:%o#src%n%a"))
+(setq TeX-view-program-selection '((output-pdf "Okular")))
 
 (add-hook 'tex-mode-hook 'lsp)
 (add-hook 'LaTeX-mode-hook 'lsp)
 (add-hook 'latex-mode-hook 'lsp)
+	
+(setq-default TeX-master "main") ; All master files called "main".
+
+(setq lsp-latex-forward-search-executable "okular")
+(setq lsp-latex-forward-search-args '("--unique" "file:%p#src:%l%f"))
 
 ;; For YaTeX
 (with-eval-after-load "yatex"
@@ -229,7 +235,7 @@
    '("fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" default))
  '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(company-auctex auctex pyvenv ripgrep lsp-pyright evil-collection magit yasnippet-snippets yasnippet evil-terminal-cursor-changer projectile ivy helm-bibtex org-ref ag sly flycheck-package package-lint flycheck undohist ## xclip solarized-theme neotree treemacs xelb which-key vertico evil)))
+   '(auctex-lua lsp-latex company-auctex pyvenv ripgrep lsp-pyright evil-collection magit yasnippet-snippets yasnippet evil-terminal-cursor-changer projectile ivy helm-bibtex org-ref ag sly flycheck-package package-lint flycheck undohist ## xclip solarized-theme neotree treemacs xelb which-key vertico evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
