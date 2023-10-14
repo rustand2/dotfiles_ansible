@@ -87,6 +87,9 @@
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
+(use-package auctex
+  :ensure t)
+
 (setq x-select-enable-clipboard t)
 (load-theme 'solarized-dark t)
 (setq-default indent-tabs-mode nil)
@@ -167,17 +170,18 @@
 
 (require 'lsp-latex)
 
-(add-to-list 'TeX-view-program-list '("Okular" "okular --unique file:%o#src%n%a"))
+(setq TeX-view-program-list '(("Okular" "okular --noraise --unique file:%o#src%n%a")))
 (setq TeX-view-program-selection '((output-pdf "Okular")))
 
 (add-hook 'tex-mode-hook 'lsp)
-(add-hook 'LaTeX-mode-hook 'lsp)
 (add-hook 'latex-mode-hook 'lsp)
-	
+
 (setq-default TeX-master "main") ; All master files called "main".
 
 (setq lsp-latex-forward-search-executable "okular")
-(setq lsp-latex-forward-search-args '("--unique" "file:%p#src:%l%f"))
+(setq lsp-latex-forward-search-args '("--noraise" "--unique" "file:%p#src:%l%f"))
+(setq lsp-latex-build-forward-search-after t)
+(setq lsp-latex-build-on-save t)
 
 ;; For YaTeX
 (with-eval-after-load "yatex"
@@ -186,6 +190,12 @@
 ;; For bibtex
 (with-eval-after-load "bibtex"
  (add-hook 'bibtex-mode-hook 'lsp))
+
+(defun my-open-citation-at-point ()
+  (interactive)
+  (bibtex-completion-open-pdf (list (thing-at-point 'symbol))))
+
+(evil-define-key 'normal 'latex-mode-map "gp" 'my-open-citation-at-point)
 
 (add-to-list 'auto-mode-alist '("\\.\\(bb\\|bbappend\\|bbclass\\|inc\\|conf\\)\\'" . bitbake-mode))
 (with-eval-after-load 'lsp-mode
