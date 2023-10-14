@@ -107,8 +107,6 @@
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 
 (windmove-default-keybindings)
-(require 'org-ref)
-(require 'org-ref-helm)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)) 
 
 (menu-bar-mode -1)
@@ -126,11 +124,6 @@
 (add-hook 'buffer-list-update-hook 'highlight-selected-window)
 
 (add-to-list 'default-frame-alist '(background-color . "unspecified-bg"))
-;;(defun on-after-init ()
-;;  (unless (display-graphic-p (selected-frame))
-;;    (set-face-background 'default "unspecified-bg" (selected-frame))))
-;;
-;;(add-hook 'window-setup-hook 'on-after-init)
 
 (defun tmux-navigate-directions ()
   (let* ((x (nth 0 (window-edges)))
@@ -229,7 +222,6 @@
 (setq mu4e-drafts-folder "/Drafts")
 (setq mu4e-trash-folder  "/Trash")
 
-;;(slime-setup '(slime-fancy slime-quicklisp slime-asdf))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
