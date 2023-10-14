@@ -90,6 +90,8 @@
 (use-package auctex
   :ensure t)
 
+(setq backup-directory-alist '((".*" . "~/.emacs.d/backup")))
+
 (setq x-select-enable-clipboard t)
 (load-theme 'solarized-dark t)
 (setq-default indent-tabs-mode nil)
