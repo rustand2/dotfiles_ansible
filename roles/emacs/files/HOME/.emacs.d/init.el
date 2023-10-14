@@ -19,7 +19,6 @@
 (use-package evil-collection
   :after evil
   :ensure t
-  :defer t
   :config
   (evil-collection-init))
 
@@ -28,7 +27,6 @@
 
 (use-package which-key
   :ensure t
-  :defer t
   :config
   (which-key-mode 1))
 
@@ -38,7 +36,6 @@
 
 (use-package xclip
   :ensure t
-  :defer t
   :config
   (xclip-mode 1))
 
@@ -46,12 +43,10 @@
   :ensure t)
 
 (use-package dap-mode
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package company
   :ensure t
-  :defer t
   :config
   (company-mode 1))
 
@@ -61,13 +56,11 @@
 
 (use-package yasnippet
   :ensure t
-  :defer t
   :config
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package lsp-mode
   :ensure t
@@ -89,7 +82,6 @@
 
 (use-package undo-tree
   :ensure t
-  :defer t
   :config
   (global-undo-tree-mode 1)
   (setq undo-tree-auto-save-history t)
