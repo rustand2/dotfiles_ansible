@@ -61,9 +61,14 @@
 (use-package yasnippet
   :ensure t
   :config
+  (setq yas-indent-line 'auto)
+  (setq yas-also-auto-indent-first-line t)
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets
+  :ensure t)
+
+(use-package yasnippets-latex
   :ensure t)
 
 (use-package lsp-mode
