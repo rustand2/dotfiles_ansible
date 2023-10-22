@@ -137,6 +137,8 @@
   :ensure t
   :config
   (global-undo-tree-mode 1)
+  (setq undo-tree-visualizer-timestamps t)
+  (setq undo-tree-visualizer-diff t)
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
@@ -230,6 +232,7 @@
 
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/backup")))
+(setq create-lockfiles nil)
 
 (setq x-select-enable-clipboard t)
 (setq-default indent-tabs-mode nil)
@@ -237,9 +240,21 @@
 (xterm-mouse-mode 1)
 (savehist-mode 1)
 (global-hl-line-mode 1)
-(auto-revert-mode 1)
+(global-auto-revert-mode 1)
 (save-place-mode 1)
+(setq dired-listing-switches "-lAh --group-directories-first")
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
 
+;; change all prompts to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+(defun set-line-number-background ()
+  (set-face-background 'line-number (face-attribute 'mode-line :background)))
+(add-hook 'server-after-make-frame-hook 'set-line-number-background)
+(add-hook 'window-setup-hook 'set-line-number-background)
 
 (windmove-default-keybindings)
 
