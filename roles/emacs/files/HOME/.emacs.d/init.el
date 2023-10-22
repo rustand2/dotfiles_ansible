@@ -108,6 +108,14 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode 1))
 
+;; Provides only the command “restart-emacs”.
+(use-package restart-emacs
+  :ensure t
+  ;; If I ever close Emacs, it's likely because I want to restart it.
+  :bind ("C-x C-c" . restart-emacs)
+  ;; Let's define an alias so there's no need to remember the order.
+  :config (defalias 'emacs-restart #'restart-emacs))
+
 (use-package bitbake
   :ensure t
   :mode "bitbake-mode"
