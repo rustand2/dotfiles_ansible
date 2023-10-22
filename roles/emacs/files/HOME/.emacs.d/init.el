@@ -5,8 +5,6 @@
 (package-initialize)
 (package-refresh-contents)
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-
 (use-package evil
   :ensure t
   :init
@@ -23,7 +21,11 @@
   (evil-collection-init))
 
 (use-package evil-terminal-cursor-changer
-  :ensure t)
+  :ensure t
+  :config
+  (unless (display-graphic-p)
+          (require 'evil-terminal-cursor-changer)
+          (evil-terminal-cursor-changer-activate)))
 
 (use-package which-key
   :ensure t
@@ -40,7 +42,9 @@
   (xclip-mode 1))
 
 (use-package solarized-theme
-  :ensure t)
+  :ensure t
+  :config
+  (load-theme 'solarized-dark t))
 
 (use-package dap-mode
   :ensure t)
@@ -48,7 +52,7 @@
 (use-package company
   :ensure t
   :config
-  (company-mode 1))
+  (global-company-mode 1))
 
 (use-package magit
   :ensure t
@@ -70,6 +74,29 @@
   :config
   (lsp-enable-which-key-integration t))
 
+(use-package lsp-latex
+  :ensure t
+  :init
+  (require 'lsp-latex)
+
+  :config
+  (add-hook 'tex-mode-hook 'lsp)
+  (add-hook 'latex-mode-hook 'lsp)
+  (add-hook 'LaTeX-mode-hook 'lsp)
+
+  (setq lsp-latex-forward-search-executable "okular")
+  (setq lsp-latex-forward-search-args '("--noraise" "--unique" "file:%p#src:%l%f"))
+  (setq lsp-latex-build-forward-search-after t)
+  (setq lsp-latex-build-on-save t)
+
+  ;; For YaTeX
+  (with-eval-after-load "yatex"
+    (add-hook 'yatex-mode-hook 'lsp))
+
+  ;; For bibtex
+  (with-eval-after-load "bibtex"
+    (add-hook 'bibtex-mode-hook 'lsp)))
+
 (use-package projectile
   :ensure t
   :config
@@ -78,7 +105,20 @@
 
 (use-package bitbake
   :ensure t
-  :mode "bitbake-mode")
+  :mode "bitbake-mode"
+  :config
+  (add-to-list 'auto-mode-alist '("\\.\\(bb\\|bbappend\\|bbclass\\|inc\\|conf\\)\\'" . bitbake-mode))
+  (with-eval-after-load 'lsp-mode
+    (add-to-list 'lsp-language-id-configuration
+      '(bitbake-mode . "bitbake"))
+    (lsp-register-client
+      (make-lsp-client
+      :new-connection (lsp-stdio-connection "bitbake-language-server")
+      :activation-fn (lsp-activate-on "bitbake")
+      :server-id 'bitbake)))
+
+  (with-eval-after-load "bitbake-mode"
+    (add-hook 'bitbake-mode-hook 'lsp)))
 
 (use-package undo-tree
   :ensure t
@@ -87,33 +127,111 @@
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
-(use-package auctex
-  :ensure t)
+(use-package tex
+  :ensure auctex
+  :config
+  (setq-default TeX-master "main") ; All master files called "main".
+  (setq TeX-view-program-list '(("Okular" "okular --noraise --unique file:%o#src%n%a")))
+  (setq TeX-view-program-selection '((output-pdf "Okular"))))
+
+(use-package git-gutter
+  :ensure t
+  :config
+  (add-to-list 'git-gutter:update-hooks 'focus-in-hook)
+  (setq git-gutter:hide-gutter t)
+  (setq git-gutter:update-interval 2)
+  (setq git-gutter:unchanged-sign " ")
+  (defun set-git-gutter-background ()
+    (set-face-background 'git-gutter:unchanged (face-attribute 'mode-line :background))
+    (set-face-background 'git-gutter:modified (face-attribute 'mode-line :background))
+    (set-face-background 'git-gutter:added (face-attribute 'mode-line :background))
+    (set-face-background 'git-gutter:deleted (face-attribute 'mode-line :background)))
+  (add-hook 'server-after-make-frame-hook 'set-git-gutter-background)
+  (add-hook 'window-setup-hook 'set-git-gutter-background)
+  (global-git-gutter-mode 1))
+
+(use-package helm
+  :ensure t
+  :init
+  (helm-mode 1)
+  :bind (("M-x"     . helm-M-x)
+         ("C-x C-f" . helm-find-files)
+         ("C-x C-r" . helm-recentf)
+         ("C-h a"   . helm-apropos)))
+
+
+(use-package bibtex-completion
+  :ensure t
+  :config
+  (setq bibtex-completion-bibliography '("~/Documents/master/thesis/Ref.bib")
+        bibtex-completion-library-path '("~/Documents/master/thesis/papers"
+                                         "~/Documents/master/thesis/papers/ota"
+                                         "~/Documents/master/thesis/papers/ota/implementations"
+                                         "~/Documents/master/thesis/papers/security"
+                                         "~/Documents/master/thesis/papers/identity"
+                                         "~/Documents/master/thesis/papers/chain-of-trust")
+        bibtex-completion-notes-path "~/Documents/master/thesis/"
+        bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
+
+        bibtex-completion-additional-search-fields '(keywords)
+        bibtex-completion-display-formats
+        '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+        bibtex-completion-pdf-open-function
+          (lambda (fpath)
+            (call-process "okular" nil 0 nil fpath)))
+  (defun my-open-citation-at-point ()
+    (interactive) (bibtex-completion-open-pdf (list (thing-at-point 'symbol))))
+
+  (with-eval-after-load "evil"
+    (evil-define-key 'normal 'latex-mode-map "gp" 'my-open-citation-at-point)))
+
+(use-package ace-window
+  :ensure t
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
+(use-package mu4e
+  :init
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+  (require 'mu4e)
+
+  :config
+  (setq mu4e-maildir (expand-file-name "~/mail/gmail"))
+  ;; use mu4e for e-mail in emacs
+  (setq mail-user-agent 'mu4e-user-agent)
+
+  ;; these must start with a "/", and must exist
+  ;; (i.e.. /home/user/Maildir/sent must exist)
+  ;; you use e.g. 'mu mkdir' to make the Maildirs if they don't
+  ;; already exist
+
+  ;; below are the defaults; if they do not exist yet, mu4e offers to
+  ;; create them. they can also functions; see their docstrings.
+  (setq mu4e-sent-folder   "/Sent Mail")
+  (setq mu4e-drafts-folder "/Drafts")
+  (setq mu4e-trash-folder  "/Trash"))
+
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/backup")))
 
 (setq x-select-enable-clipboard t)
-(load-theme 'solarized-dark t)
 (setq-default indent-tabs-mode nil)
 
 (xterm-mouse-mode 1)
 (savehist-mode 1)
 (global-hl-line-mode 1)
-(helm-mode 1)
 (auto-revert-mode 1)
 (save-place-mode 1)
 
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
 
 (windmove-default-keybindings)
-(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)) 
 
 (menu-bar-mode -1)
-(unless (display-graphic-p)
-        (require 'evil-terminal-cursor-changer)
-        (evil-terminal-cursor-changer-activate) ; or (etcc-on)
-        )
+
 (defun highlight-selected-window ()
   "Highlight selected window with a different background color."
   (walk-windows (lambda (w)
@@ -138,89 +256,14 @@
 
     (send-string-to-terminal
      (format "\e]2;emacs %s #%s\a"
-	(buffer-name)
+    (buffer-name)
         (string
-	  (if can_go_up    ?U 1)
+          (if can_go_up    ?U 1)
           (if can_go_down  ?D 1)
           (if can_go_left  ?L 1)
           (if can_go_right ?R 1))))))
 
 (add-hook 'buffer-list-update-hook 'tmux-navigate-directions)
-
-(setq bibtex-completion-bibliography '("~/Documents/master/thesis/Ref.bib")
-	bibtex-completion-library-path '("~/Documents/master/thesis/papers" "~/Documents/master/thesis/papers/ota" "~/Documents/master/thesis/papers/security" "~/Documents/master/thesis/papers/identity" "~/Documents/master/thesis/papers/chain-of-trust" )
-	bibtex-completion-notes-path "~/Documents/master/thesis/"
-	bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
-
-	bibtex-completion-additional-search-fields '(keywords)
-	bibtex-completion-display-formats
-	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-	  (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-	  (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-	  (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-	  (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-	bibtex-completion-pdf-open-function
-	(lambda (fpath)
-	  (call-process "okular" nil 0 nil fpath)))
-
-(require 'lsp-latex)
-
-(setq TeX-view-program-list '(("Okular" "okular --noraise --unique file:%o#src%n%a")))
-(setq TeX-view-program-selection '((output-pdf "Okular")))
-
-(add-hook 'tex-mode-hook 'lsp)
-(add-hook 'latex-mode-hook 'lsp)
-
-(setq-default TeX-master "main") ; All master files called "main".
-
-(setq lsp-latex-forward-search-executable "okular")
-(setq lsp-latex-forward-search-args '("--noraise" "--unique" "file:%p#src:%l%f"))
-(setq lsp-latex-build-forward-search-after t)
-(setq lsp-latex-build-on-save t)
-
-;; For YaTeX
-(with-eval-after-load "yatex"
- (add-hook 'yatex-mode-hook 'lsp))
-
-;; For bibtex
-(with-eval-after-load "bibtex"
- (add-hook 'bibtex-mode-hook 'lsp))
-
-(defun my-open-citation-at-point ()
-  (interactive)
-  (bibtex-completion-open-pdf (list (thing-at-point 'symbol))))
-
-(evil-define-key 'normal 'latex-mode-map "gp" 'my-open-citation-at-point)
-
-(add-to-list 'auto-mode-alist '("\\.\\(bb\\|bbappend\\|bbclass\\|inc\\|conf\\)\\'" . bitbake-mode))
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-language-id-configuration
-    '(bitbake-mode . "bitbake"))
-  (lsp-register-client
-    (make-lsp-client
-    :new-connection (lsp-stdio-connection "bitbake-language-server")
-    :activation-fn (lsp-activate-on "bitbake")
-    :server-id 'bitbake)))
-
-(with-eval-after-load "bitbake-mode"
- (add-hook 'bitbake-mode-hook 'lsp))
-
-(require 'mu4e)
-
-(setq mu4e-maildir (expand-file-name "~/mail/gmail"))
-;; use mu4e for e-mail in emacs
-(setq mail-user-agent 'mu4e-user-agent)
-
-;; these must start with a "/", and must exist
-;; (i.e.. /home/user/Maildir/sent must exist)
-;; you use e.g. 'mu mkdir' to make the Maildirs if they don't
-;; already exist
-
-;; below are the defaults; if they do not exist yet, mu4e offers to
-;; create them. they can also functions; see their docstrings.
-(setq mu4e-sent-folder   "/Sent Mail")
-(setq mu4e-drafts-folder "/Drafts")
-(setq mu4e-trash-folder  "/Trash")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
