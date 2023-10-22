@@ -260,6 +260,25 @@
 
 (menu-bar-mode -1)
 
+(add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color"))) 
+(setq eshell-prompt-function '(lambda () (concat
+  "\n"
+  ;;(propertize (if venv-current-name (concat " (" venv-current-name ")\n")  "") 'face `(:foreground "#00dc00"))
+  (propertize (format-time-string "[%H:%M, %d/%m/%y]\n" (current-time)) 'face '(:foreground "green"))
+  (if (= (user-uid) 0)
+    (propertize (user-login-name) 'face '(:foreground "red"))
+    (propertize (user-login-name) 'face '(:foreground "green")))
+  (propertize "@" 'face `(:foreground "default"))
+  (propertize (system-name) 'face `(:foreground "green"))
+  (propertize (concat " [" (eshell/pwd) "]") 'face `(:foreground "default"))
+  (when (magit-get-current-branch)
+      (propertize (concat " [" (magit-get-current-branch) "]") 'face `(:foreground "green")))
+  (propertize "\n")
+  (propertize " ->" 'face '(:foreground "blue"))
+  (propertize " " 'face '(:foreground "default"))
+  )))
+(setq eshell-prompt-regexp " -> ")
+
 (defun highlight-selected-window ()
   "Highlight selected window with a different background color."
   (walk-windows (lambda (w)
