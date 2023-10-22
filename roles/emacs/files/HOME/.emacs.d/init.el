@@ -1,9 +1,9 @@
 ;; Set up package.el to work with MELPA
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
-;;(package-initialize)
-;;(package-refresh-contents)
+         '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
+(package-refresh-contents)
 
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
