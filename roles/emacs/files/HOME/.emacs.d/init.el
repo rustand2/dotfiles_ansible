@@ -309,6 +309,8 @@
 (windmove-default-keybindings)
 
 (menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "xterm-256color"))) 
 (setq eshell-prompt-function '(lambda () (concat
@@ -360,7 +362,8 @@
           (if can_go_left  ?L 1)
           (if can_go_right ?R 1))))))
 
-(add-hook 'buffer-list-update-hook 'tmux-navigate-directions)
+(unless (display-graphic-p)
+  (add-hook 'buffer-list-update-hook 'tmux-navigate-directions))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
