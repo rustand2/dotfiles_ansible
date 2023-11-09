@@ -232,6 +232,11 @@
   (setq mu4e-drafts-folder "/Drafts")
   (setq mu4e-trash-folder  "/Trash"))
 
+(use-package eat
+  :ensure t
+  :config
+  (eat-eshell-mode)
+  (setq eshell-visual-commands nil))
 
 (setq backup-directory-alist '((".*" . "~/.emacs.d/backup")))
 (setq create-lockfiles nil)
