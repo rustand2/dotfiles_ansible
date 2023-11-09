@@ -16,7 +16,7 @@
 
 (define-configuration web-buffer
   ((default-modes
-    (pushnew 'nyxt/mode/vi:vi-normal-mode %slot-value%))))
+    (append '(nyxt/mode/vi:vi-normal-mode nyxt/mode/blocker:blocker-mode) %slot-value%))))
 
 (define-configuration :document-mode
   "Add basic keybindings."
