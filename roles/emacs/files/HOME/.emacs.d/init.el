@@ -238,6 +238,31 @@
   (eat-eshell-mode)
   (setq eshell-visual-commands nil))
 
+(use-package erc
+  :custom
+  (erc-fill-function 'erc-fill-static)
+  (erc-fill-static-center 15)
+  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-lurker-hide-list '("JOIN" "PART" "QUIT")))
+
+(use-package erc-twitch
+  :ensure t
+  :after erc
+  :config
+  (erc-twitch-enable))
+
+(use-package erc-hl-nicks
+  :ensure t
+  :after erc
+  :config
+  (erc-hl-nicks-enable))
+
+(use-package erc-image
+  :ensure t
+  :after erc
+  :config
+  (erc-image-enable))
+
 (setq backup-directory-alist '((".*" . "~/.emacs.d/backup")))
 (setq create-lockfiles nil)
 
