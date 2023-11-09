@@ -49,6 +49,8 @@
 (use-package dap-mode
   :ensure t)
 
+(set-frame-font "DeJavu Sans Mono 10" nil t)
+
 (use-package company
   :ensure t
   :config
